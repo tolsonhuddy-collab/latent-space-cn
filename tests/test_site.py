@@ -38,9 +38,11 @@ class TestSiteBuild(unittest.TestCase):
             out = Path(tmp) / "dist"
             build_site.build_site(mode="published", out_dir=out)
             index_html = (out / "index.html").read_text(encoding="utf-8")
-            self.assertIn("10 期节目 · 2 期已定稿", index_html)
+            self.assertIn("10 期节目 · 4 期已定稿", index_html)
             self.assertTrue((out / "episodes" / "001-leash-bio.html").exists())
             self.assertTrue((out / "episodes" / "004-chai-discovery.html").exists())
+            self.assertTrue((out / "episodes" / "009-caspai-materials.html").exists())
+            self.assertTrue((out / "episodes" / "010-automating-science.html").exists())
             article_html = (out / "episodes" / "004-chai-discovery.html").read_text(encoding="utf-8")
             self.assertIn("通用蛋白质设计模型撑起了中立的新药研发软件层", article_html)
 

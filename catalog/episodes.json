@@ -8,9 +8,14 @@
       "kind": "science",
       "title_en": "Lab in the Loop Cancer Drug — Ian Quigley, Leash Bio",
       "title_zh": "高通量分子结合实验正在把药物模型从化学家偏好带回物理事实",
-      "guests": ["Ian Quigley"],
+      "guests": [
+        "Ian Quigley"
+      ],
       "org": "Leash Bio",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-01-15",
       "duration_minutes": 82,
       "source_url": "https://www.latent.space/",
@@ -22,9 +27,15 @@
       "kind": "science",
       "title_en": "Why AlphaFold Didn't Solve Protein Folding — Pushmeet Kohli, Google DeepMind & Sal Candido, Biohub",
       "title_zh": "",
-      "guests": ["Pushmeet Kohli", "Sal Candido"],
+      "guests": [
+        "Pushmeet Kohli",
+        "Sal Candido"
+      ],
       "org": "Google DeepMind & Biohub",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-01-22",
       "duration_minutes": 95,
       "source_url": "https://www.latent.space/",
@@ -36,9 +47,14 @@
       "kind": "science",
       "title_en": "\"We have foundation models for language, not for physics\" — Anima Anandkumar, Bren Professor of Computing",
       "title_zh": "",
-      "guests": ["Anima Anandkumar"],
+      "guests": [
+        "Anima Anandkumar"
+      ],
       "org": "Caltech",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-02-05",
       "duration_minutes": 78,
       "source_url": "https://www.latent.space/",
@@ -50,9 +66,15 @@
       "kind": "science",
       "title_en": "The BioAI Phase Shift — Matthew McPartlon & Neil Patil, Chai Discovery",
       "title_zh": "能从头设计抗体的模型，正在把新药研发变成软件迭代循环",
-      "guests": ["Matthew McPartlon", "Neil Patil"],
+      "guests": [
+        "Matthew McPartlon",
+        "Neil Patil"
+      ],
       "org": "Chai Discovery",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-02-26",
       "duration_minutes": 100,
       "source_url": "https://www.latent.space/",
@@ -64,9 +86,15 @@
       "kind": "science",
       "title_en": "The Lab of the Future Should Feel Like a Data Center — Andy Beam & Rafa Gómez-Bombarelli, Lila Sciences",
       "title_zh": "",
-      "guests": ["Andy Beam", "Rafa Gómez-Bombarelli"],
+      "guests": [
+        "Andy Beam",
+        "Rafa Gómez-Bombarelli"
+      ],
       "org": "Lila Sciences",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-03-05",
       "duration_minutes": 88,
       "source_url": "https://www.latent.space/",
@@ -78,9 +106,15 @@
       "kind": "science",
       "title_en": "The Coolest Diffusion Research Isn't in LLMs — Evan Feinberg & Sergey Edunov, Genesis Molecular AI",
       "title_zh": "",
-      "guests": ["Evan Feinberg", "Sergey Edunov"],
+      "guests": [
+        "Evan Feinberg",
+        "Sergey Edunov"
+      ],
       "org": "Genesis Molecular AI",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-03-12",
       "duration_minutes": 85,
       "source_url": "https://www.latent.space/",
@@ -92,9 +126,14 @@
       "kind": "science",
       "title_en": "The Self-Driving Lab — Joseph Krause, Radical AI",
       "title_zh": "",
-      "guests": ["Joseph Krause"],
+      "guests": [
+        "Joseph Krause"
+      ],
       "org": "Radical AI",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-03-19",
       "duration_minutes": 76,
       "source_url": "https://www.latent.space/",
@@ -106,9 +145,14 @@
       "kind": "science",
       "title_en": "Why There Is No \"AlphaFold for Materials\" — AI for Materials Discovery with Heather Kulik",
       "title_zh": "",
-      "guests": ["Heather Kulik"],
+      "guests": [
+        "Heather Kulik"
+      ],
       "org": "MIT",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-03-26",
       "duration_minutes": 80,
       "source_url": "https://www.latent.space/",
@@ -119,28 +163,38 @@
       "number": "009",
       "kind": "science",
       "title_en": "Searching the Space of All Possible Materials — Prof. Max Welling, CuspAI",
-      "title_zh": "",
-      "guests": ["Max Welling"],
+      "title_zh": "连接数据中心与真实实验的搜索引擎正在重塑新材料发现",
+      "guests": [
+        "Max Welling"
+      ],
       "org": "CuspAI",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-04-02",
       "duration_minutes": 84,
       "source_url": "https://www.latent.space/",
-      "status": "pending"
+      "status": "reviewed"
     },
     {
       "id": "010-automating-science",
       "number": "010",
       "kind": "science",
       "title_en": "Automating Science: World Models, Scientific Taste, Agent Loops — Andrew White",
-      "title_zh": "",
-      "guests": ["Andrew White"],
+      "title_zh": "世界模型与验证闭环正在把科学发现的认知过程自动化",
+      "guests": [
+        "Andrew White"
+      ],
       "org": "FutureHouse",
-      "hosts": ["swyx", "Alessio"],
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
       "published_at": "2026-04-09",
       "duration_minutes": 92,
       "source_url": "https://www.latent.space/",
-      "status": "pending"
+      "status": "reviewed"
     }
   ]
 }
