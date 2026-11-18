@@ -13,6 +13,9 @@
   ],
   "published_at": "2026-02-05",
   "duration_minutes": 78,
-  "source_url": "https://www.latent.space/",
-  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+  "source_url": "https://latent.space/p/anima/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "79mIutht1f4",
+  "cover": "covers/003-anima-physics.jpg",
+  "cover_sha256": "26cbee031192566b2345eb5008b21c326813f13ca07db919818dce90b1940d9d"
 }

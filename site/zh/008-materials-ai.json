@@ -13,6 +13,9 @@
   ],
   "published_at": "2026-03-26",
   "duration_minutes": 80,
-  "source_url": "https://www.latent.space/",
-  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+  "source_url": "https://latent.space/p/materials/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "KSCCKCz2x04",
+  "cover": "covers/008-materials-ai.jpg",
+  "cover_sha256": "0e53f208b1d6affb7a93eadce17a09f119ea3d914a0a6ffdd07a01af7b827079"
 }

@@ -14,6 +14,9 @@
   ],
   "published_at": "2026-03-12",
   "duration_minutes": 85,
-  "source_url": "https://www.latent.space/",
-  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+  "source_url": "https://latent.space/p/the-coolest-diffusion-research-isnt/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "YQWXxnkK4dw",
+  "cover": "covers/006-genesis-diffusion.jpg",
+  "cover_sha256": "f767eca2ca0e52925bd8abc0e02532278c748f5b9ab4d9715dd926a04c0a59fb"
 }

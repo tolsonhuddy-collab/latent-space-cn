@@ -54,6 +54,20 @@ class TestSiteBuild(unittest.TestCase):
                 self.assertTrue((out / "episodes" / f"{ep_id}.html").exists())
             article_html = (out / "episodes" / "004-chai-discovery.html").read_text(encoding="utf-8")
             self.assertIn("通用蛋白质设计模型撑起了中立的新药研发软件层", article_html)
+            self.assertIn('class="article-cover"', article_html)
+            self.assertIn('property="og:image"', article_html)
+            self.assertIn('src="covers/001-leash-bio.jpg"', index_html)
+            for ep_id in ("001-leash-bio", "010-automating-science"):
+                self.assertTrue((out / "covers" / f"{ep_id}.jpg").exists())
+
+    def test_cover_integrity(self) -> None:
+        import hashlib
+        catalog = json.loads((ROOT / "catalog" / "episodes.json").read_text(encoding="utf-8"))
+        for ep in catalog["episodes"]:
+            self.assertTrue(ep["source_url"].startswith("https://latent.space/p/"), ep["id"])
+            cover = ROOT / "site" / ep["cover"]
+            self.assertTrue(cover.exists(), ep["id"])
+            self.assertEqual(hashlib.sha256(cover.read_bytes()).hexdigest(), ep["cover_sha256"], ep["id"])
 
 
 if __name__ == "__main__":

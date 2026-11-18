@@ -13,6 +13,9 @@
   ],
   "published_at": "2026-03-19",
   "duration_minutes": 76,
-  "source_url": "https://www.latent.space/",
-  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+  "source_url": "https://latent.space/p/radical-ai/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "4-sWFytOfRw",
+  "cover": "covers/007-radical-ai.jpg",
+  "cover_sha256": "92104fd72350a5dc549d8c941103484aa1450dec3398f44ebcc36009565c6456"
 }

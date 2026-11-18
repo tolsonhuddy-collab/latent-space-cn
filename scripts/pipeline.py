@@ -88,6 +88,9 @@ def cmd_publish(ep_id: str, md_file: Path, set_featured: bool = False) -> None:
         "source_url": target_ep.get("source_url", "https://www.latent.space/"),
         "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
     }
+    for key in ("youtube_id", "cover", "cover_sha256"):
+        if target_ep.get(key):
+            meta[key] = target_ep[key]
     dest_json.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     CATALOG_PATH.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 

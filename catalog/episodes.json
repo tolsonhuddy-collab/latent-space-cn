@@ -6,7 +6,7 @@
       "id": "001-leash-bio",
       "number": "001",
       "kind": "science",
-      "title_en": "Lab in the Loop Cancer Drug — Ian Quigley, Leash Bio",
+      "title_en": "Lab-in-the-Loop at Compute Speed — Ian Quigley, Leash Bio",
       "title_zh": "高通量分子结合实验正在把药物模型从化学家偏好带回物理事实",
       "guests": [
         "Ian Quigley"
@@ -18,8 +18,11 @@
       ],
       "published_at": "2026-01-15",
       "duration_minutes": 82,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/lab-in-the-loop-at-compute-speed/",
+      "status": "reviewed",
+      "youtube_id": "hQSBJVreLms",
+      "cover": "covers/001-leash-bio.jpg",
+      "cover_sha256": "2a2a9a1f672bc948442b9b6e5814b1a290bbda208c020a8ec2ea8297ba46427a"
     },
     {
       "id": "002-kohli-protein",
@@ -38,8 +41,11 @@
       ],
       "published_at": "2026-01-22",
       "duration_minutes": 95,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/biohub-deepmind/",
+      "status": "reviewed",
+      "youtube_id": "NufiHZfMwaw",
+      "cover": "covers/002-kohli-protein.jpg",
+      "cover_sha256": "a5de47efe7261dcedee32808b92e50003a9fe3e01844189d04dcd5e8b7e97365"
     },
     {
       "id": "003-anima-physics",
@@ -57,8 +63,11 @@
       ],
       "published_at": "2026-02-05",
       "duration_minutes": 78,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/anima/",
+      "status": "reviewed",
+      "youtube_id": "79mIutht1f4",
+      "cover": "covers/003-anima-physics.jpg",
+      "cover_sha256": "26cbee031192566b2345eb5008b21c326813f13ca07db919818dce90b1940d9d"
     },
     {
       "id": "004-chai-discovery",
@@ -77,8 +86,11 @@
       ],
       "published_at": "2026-02-26",
       "duration_minutes": 100,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/chai-discovery/",
+      "status": "reviewed",
+      "youtube_id": "Qp5xklyJySI",
+      "cover": "covers/004-chai-discovery.jpg",
+      "cover_sha256": "bb2272997c4bbf338ce861781a6d593a25eb74eee32fa81981edfc36ad670222"
     },
     {
       "id": "005-lila-lab",
@@ -97,8 +109,11 @@
       ],
       "published_at": "2026-03-05",
       "duration_minutes": 88,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/the-lab-of-the-future-should-feel/",
+      "status": "reviewed",
+      "youtube_id": "2wIxPWK6nCs",
+      "cover": "covers/005-lila-lab.jpg",
+      "cover_sha256": "3dd19c2364d62d5884cc37dee693c0d45c4cea3173207bd015bfdcdf29b54358"
     },
     {
       "id": "006-genesis-diffusion",
@@ -117,8 +132,11 @@
       ],
       "published_at": "2026-03-12",
       "duration_minutes": 85,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/the-coolest-diffusion-research-isnt/",
+      "status": "reviewed",
+      "youtube_id": "YQWXxnkK4dw",
+      "cover": "covers/006-genesis-diffusion.jpg",
+      "cover_sha256": "f767eca2ca0e52925bd8abc0e02532278c748f5b9ab4d9715dd926a04c0a59fb"
     },
     {
       "id": "007-radical-ai",
@@ -136,8 +154,11 @@
       ],
       "published_at": "2026-03-19",
       "duration_minutes": 76,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/radical-ai/",
+      "status": "reviewed",
+      "youtube_id": "4-sWFytOfRw",
+      "cover": "covers/007-radical-ai.jpg",
+      "cover_sha256": "92104fd72350a5dc549d8c941103484aa1450dec3398f44ebcc36009565c6456"
     },
     {
       "id": "008-materials-ai",
@@ -155,8 +176,11 @@
       ],
       "published_at": "2026-03-26",
       "duration_minutes": 80,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/materials/",
+      "status": "reviewed",
+      "youtube_id": "KSCCKCz2x04",
+      "cover": "covers/008-materials-ai.jpg",
+      "cover_sha256": "0e53f208b1d6affb7a93eadce17a09f119ea3d914a0a6ffdd07a01af7b827079"
     },
     {
       "id": "009-caspai-materials",
@@ -174,8 +198,11 @@
       ],
       "published_at": "2026-04-02",
       "duration_minutes": 84,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/cuspai/",
+      "status": "reviewed",
+      "youtube_id": "V7_Ec2WFAWs",
+      "cover": "covers/009-caspai-materials.jpg",
+      "cover_sha256": "6918b9dfc6bc3f624873718fb25f7f2815314a5fa18407ceb292f79a9eb4b30e"
     },
     {
       "id": "010-automating-science",
@@ -193,8 +220,11 @@
       ],
       "published_at": "2026-04-09",
       "duration_minutes": 92,
-      "source_url": "https://www.latent.space/",
-      "status": "reviewed"
+      "source_url": "https://latent.space/p/edison/",
+      "status": "reviewed",
+      "youtube_id": "XqoBSB3nsgw",
+      "cover": "covers/010-automating-science.jpg",
+      "cover_sha256": "6e7410059c9de8f5a0904965152184658a93ef7a8921e22131a52aafe7eed0c6"
     }
   ]
 }

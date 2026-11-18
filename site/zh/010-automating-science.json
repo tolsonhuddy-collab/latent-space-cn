@@ -13,6 +13,9 @@
   ],
   "published_at": "2026-04-09",
   "duration_minutes": 92,
-  "source_url": "https://www.latent.space/",
-  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+  "source_url": "https://latent.space/p/edison/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "XqoBSB3nsgw",
+  "cover": "covers/010-automating-science.jpg",
+  "cover_sha256": "6e7410059c9de8f5a0904965152184658a93ef7a8921e22131a52aafe7eed0c6"
 }

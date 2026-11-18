@@ -271,14 +271,20 @@ def render_featured_html(homepage: dict, episodes: List[dict], articles: Dict[st
 
     kicker = html.escape(homepage.get("featured_label") or "最新精读")
     article_href = f"episodes/{html.escape(ep_id, quote=True)}.html"
+    cover = feat_ep.get("cover") or ""
+    if cover:
+        cover_inner = f'<img src="{html.escape(cover, quote=True)}" alt="{title_en}" loading="eager" />'
+        cover_class = "featured-cover has-cover"
+    else:
+        cover_inner = f'<span class="cover-badge">封面占位</span><span class="cover-en-caption">{title_en}</span>'
+        cover_class = "featured-cover"
 
     return f"""
     <section class="featured-section">
       <div class="container">
         <div class="featured-grid">
-          <a class="featured-cover" href="{article_href}">
-            <span class="cover-badge">封面占位</span>
-            <span class="cover-en-caption">{title_en}</span>
+          <a class="{cover_class}" href="{article_href}">
+            {cover_inner}
           </a>
           <div class="featured-body">
             <div class="featured-kicker">{kicker}</div>
@@ -320,9 +326,17 @@ def render_episode_cards(episodes: List[dict], articles: Dict[str, Tuple[dict, s
             sep = " · " if meta_html else ""
             meta_html += f'{sep}<a href="{html.escape(source_url, quote=True)}" target="_blank" rel="noopener noreferrer">原节目页</a>'
 
+        cover = merged.get("cover") or ""
+        img_html = (
+            f'<img src="{html.escape(cover, quote=True)}" alt="{html.escape(title_en, quote=True)}" loading="lazy" />'
+            if cover
+            else ""
+        )
+        thumb_cls = "card-thumb has-cover" if cover else "card-thumb"
         if is_pub:
             thumb_html = (
-                f'<a class="card-thumb" href="{article_href}">'
+                f'<a class="{thumb_cls}" href="{article_href}">'
+                f"{img_html}"
                 f'<span class="card-num">{num}</span>'
                 f'<span class="card-badge">{status_label}</span>'
                 f"</a>"
@@ -330,7 +344,8 @@ def render_episode_cards(episodes: List[dict], articles: Dict[str, Tuple[dict, s
             title_html = f'<h3 class="card-title"><a href="{article_href}">{html.escape(title_zh or title_en)} ↗</a></h3>'
         else:
             thumb_html = (
-                f'<div class="card-thumb">'
+                f'<div class="{thumb_cls}">'
+                f"{img_html}"
                 f'<span class="card-num">{num}</span>'
                 f'<span class="card-badge">{status_label}</span>'
                 f"</div>"
@@ -419,6 +434,9 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
     # Copy static assets
     for asset in ("style.css", "app.js"):
         shutil.copy2(WEB_DIR / asset, out_dir / asset)
+    covers_src = ROOT / "site" / "covers"
+    if mode != "demo" and covers_src.is_dir():
+        shutil.copytree(covers_src, out_dir / "covers")
 
     site_title = homepage.get("site_title") or "Latent Space 中文精读"
     site_subtitle = homepage.get("site_subtitle") or "把一期科学长谈，读成一部中文长文。"
@@ -492,6 +510,20 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
             nm = published_ordered[idx + 1][0]
             next_html = f'<a href="{html.escape(nm["id"], quote=True)}.html">下一篇：{html.escape(nm.get("number", ""))} {html.escape(nm.get("title_zh") or nm.get("title_en") or "")} →</a>'
 
+        cover = meta.get("cover") or ""
+        og_meta = ""
+        cover_html = ""
+        if cover:
+            og_url = f"{base_url.rstrip('/')}/{cover}" if base_url else f"../{cover}"
+            og_meta = (
+                f'<meta property="og:image" content="{html.escape(og_url, quote=True)}" />\n'
+                f'  <meta name="twitter:card" content="summary_large_image" />'
+            )
+            cover_html = (
+                f'<figure class="article-cover"><img src="../{html.escape(cover, quote=True)}" '
+                f'alt="{html.escape(title_en, quote=True)}" /></figure>'
+            )
+
         page_html = (
             article_tpl.replace("{{SITE_TITLE}}", html.escape(site_title))
             .replace("{{BASE_PATH}}", "../")
@@ -504,7 +536,8 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
             .replace("{{ARTICLE_BODY_HTML}}", body_html)
             .replace("{{PREV_LINK_HTML}}", prev_html)
             .replace("{{NEXT_LINK_HTML}}", next_html)
-            .replace("{{OG_IMAGE_META}}", "")
+            .replace("{{OG_IMAGE_META}}", og_meta)
+            .replace("{{COVER_HTML}}", cover_html)
         )
         (out_dir / "episodes" / f"{ep_id}.html").write_text(page_html, encoding="utf-8")
 

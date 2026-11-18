@@ -14,6 +14,9 @@
   ],
   "published_at": "2026-02-26",
   "duration_minutes": 100,
-  "source_url": "https://www.latent.space/",
-  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+  "source_url": "https://latent.space/p/chai-discovery/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "Qp5xklyJySI",
+  "cover": "covers/004-chai-discovery.jpg",
+  "cover_sha256": "bb2272997c4bbf338ce861781a6d593a25eb74eee32fa81981edfc36ad670222"
 }

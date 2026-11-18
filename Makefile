@@ -24,7 +24,7 @@ published:
 release: test audit published
 	git add catalog/ site/ README.md Makefile scripts/ web/ tests/ .github/ .gitignore
 	@if ! git diff --cached --quiet; then \
-		git commit -m "Update published essays and catalog"; \
+		git commit -m "$${MSG:-Update published essays and catalog}"; \
 	fi
 	git push -u origin main
 

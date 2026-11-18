@@ -13,6 +13,9 @@
   ],
   "published_at": "2026-04-02",
   "duration_minutes": 84,
-  "source_url": "https://www.latent.space/",
-  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+  "source_url": "https://latent.space/p/cuspai/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "V7_Ec2WFAWs",
+  "cover": "covers/009-caspai-materials.jpg",
+  "cover_sha256": "6918b9dfc6bc3f624873718fb25f7f2815314a5fa18407ceb292f79a9eb4b30e"
 }
