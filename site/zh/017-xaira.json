@@ -1,0 +1,22 @@
+{
+  "id": "017-xaira",
+  "number": "017",
+  "title_zh": "大规模因果扰动数据正在让虚拟细胞跨过线性基线",
+  "title_en": "Causal Models Need Causal Data — Bo Wang & Ci Chu, Xaira Therapeutics",
+  "guests": [
+    "Bo Wang",
+    "Ci Chu"
+  ],
+  "org": "Xaira Therapeutics",
+  "hosts": [
+    "Brandon Anderson",
+    "RJ Honicke"
+  ],
+  "published_at": "2026-07-21",
+  "duration_minutes": 90,
+  "source_url": "https://latent.space/p/xaira/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "2AdS-2uuH80",
+  "cover": "covers/017-xaira.jpg",
+  "cover_sha256": "4bcae6ea2d892cb1fe55985e1ff1e2e219a78fb746e9b4e455b5c30b34ebba97"
+}

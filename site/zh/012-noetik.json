@@ -1,0 +1,22 @@
+{
+  "id": "012-noetik",
+  "number": "012",
+  "title_zh": "患者组织空间基础模型正在破解抗癌药临床试验失败困局",
+  "title_en": "Training Transformers to solve 95% failure rate of Cancer Trials — Ron Alfa & Daniel Bear, Noetik",
+  "guests": [
+    "Ron Alfa",
+    "Daniel Bear"
+  ],
+  "org": "Noetik",
+  "hosts": [
+    "Brandon Anderson",
+    "RJ Honicke"
+  ],
+  "published_at": "2026-04-20",
+  "duration_minutes": 85,
+  "source_url": "https://latent.space/p/noetik/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "uqM8qjbLRHA",
+  "cover": "covers/012-noetik.jpg",
+  "cover_sha256": "f2e0e8be9697623ce4f52611df26350bcf5515af04b47f92fa5bf297b2ed9cb3"
+}

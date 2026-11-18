@@ -1,0 +1,21 @@
+{
+  "id": "016-axiom-math",
+  "number": "016",
+  "title_zh": "形式化数学验证正在把人工智能推理变成可复用底座",
+  "title_en": "Scaling Past Informal AI — Carina Hong, Axiom Math",
+  "guests": [
+    "Carina Hong"
+  ],
+  "org": "Axiom Math",
+  "hosts": [
+    "Brandon Anderson",
+    "RJ Honicke"
+  ],
+  "published_at": "2026-06-03",
+  "duration_minutes": 93,
+  "source_url": "https://latent.space/p/axiom/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "abYcV5LHMG4",
+  "cover": "covers/016-axiom-math.jpg",
+  "cover_sha256": "207a28803252d431744485047864fcc4a3f9d2bd3ecff061713dded57e5adc57"
+}

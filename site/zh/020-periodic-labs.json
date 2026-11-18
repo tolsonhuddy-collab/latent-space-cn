@@ -1,0 +1,22 @@
+{
+  "id": "020-periodic-labs",
+  "number": "020",
+  "title_zh": "合成超级智能需要把大模型放进真实实验室",
+  "title_en": "Synthesis Superintelligence: from Semiconductors to Superconductors — Liam Fedus & Ekin Dogus Cubuk, Periodic Labs",
+  "guests": [
+    "Liam Fedus",
+    "Ekin Dogus Cubuk"
+  ],
+  "org": "Periodic Labs",
+  "hosts": [
+    "swyx",
+    "Alessio"
+  ],
+  "published_at": "2026-10-08",
+  "duration_minutes": 84,
+  "source_url": "https://latent.space/p/periodic/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "YHiqVRxGViM",
+  "cover": "covers/020-periodic-labs.jpg",
+  "cover_sha256": "662839abb7f8ddd5c8e9cfa5fae0751bf5ae1145b02fbe44ade62167bd87c9cf"
+}

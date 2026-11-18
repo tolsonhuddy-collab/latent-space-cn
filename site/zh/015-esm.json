@@ -1,0 +1,21 @@
+{
+  "id": "015-esm",
+  "number": "015",
+  "title_zh": "宏基因组序列与规模法则推动蛋白质模型走向虚拟细胞",
+  "title_en": "ESM: The Bitter Lesson is Coming for Proteins — Alex Rives, Biohub",
+  "guests": [
+    "Alex Rives"
+  ],
+  "org": "Biohub",
+  "hosts": [
+    "Brandon Anderson",
+    "RJ Honicke"
+  ],
+  "published_at": "2026-05-27",
+  "duration_minutes": 70,
+  "source_url": "https://latent.space/p/esmfold2/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "XdevS0GSuiQ",
+  "cover": "covers/015-esm.jpg",
+  "cover_sha256": "3f29ca08229468f484e12d82dea8f8088630bd5fbf17cad940dd384e12a0df3b"
+}

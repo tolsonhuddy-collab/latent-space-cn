@@ -1,0 +1,21 @@
+{
+  "id": "013-vibephysics",
+  "number": "013",
+  "title_zh": "推理模型协助理论物理破解了单负散射振幅难题",
+  "title_en": "Doing Vibe Physics — Alex Lupsasca, OpenAI",
+  "guests": [
+    "Alex Lupsasca"
+  ],
+  "org": "Vanderbilt University & OpenAI",
+  "hosts": [
+    "Brandon Anderson",
+    "RJ Honicke"
+  ],
+  "published_at": "2026-05-05",
+  "duration_minutes": 92,
+  "source_url": "https://latent.space/p/lupsasca/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "9d899Ram9Bs",
+  "cover": "covers/013-vibephysics.jpg",
+  "cover_sha256": "2235397237993c13935a7c284a82905614b95c70eaad462269a2338cf81791bc"
+}

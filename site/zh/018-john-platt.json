@@ -1,0 +1,21 @@
+{
+  "id": "018-john-platt",
+  "number": "018",
+  "title_zh": "科学智能体与物理边界正在重塑科研与气候预测路径",
+  "title_en": "An Oscar, Two Asteroids, and the Algorithm in Your sklearn: John Platt on AI for Science",
+  "guests": [
+    "John Platt"
+  ],
+  "org": "Google Research",
+  "hosts": [
+    "Brandon Anderson",
+    "RJ Honicke"
+  ],
+  "published_at": "2026-09-22",
+  "duration_minutes": 121,
+  "source_url": "https://latent.space/p/john-platt/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "2xBSGluFkG0",
+  "cover": "covers/018-john-platt.jpg",
+  "cover_sha256": "fe9c6dd98a12f0c291d5133d627fc5c611452bbde7712293022bd9deeb3fea30"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "014-fourth-law-drones",
+  "number": "014",
+  "title_zh": "自主无人机正在改写现代战场技术栈与防务工业经济",
+  "title_en": "The Autonomous Drone Tech Stack & Economics of Drones — Yaroslav Azhnyuk, The Fourth Law & Guest Host Noah Smith, Noahpinion",
+  "guests": [
+    "Yaroslav Azhnyuk",
+    "Noah Smith"
+  ],
+  "org": "The Fourth Law & Noahpinion",
+  "hosts": [
+    "Brandon Anderson",
+    "Noah Smith"
+  ],
+  "published_at": "2026-05-18",
+  "duration_minutes": 120,
+  "source_url": "https://latent.space/p/the-fourth-law/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "UmCZBwsibgs",
+  "cover": "covers/014-fourth-law-drones.jpg",
+  "cover_sha256": "cf9174097f119e75c994756eeaa22b3c8052c4f87b004f3cb958f84613e730a6"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "019-radical-numerics",
+  "number": "019",
+  "title_zh": "基因组大模型推动生物设计走向攻防并行的军备竞赛",
+  "title_en": "Bio-security is an AI Arms Race — Eric Nguyen, Radical Numerics",
+  "guests": [
+    "Eric Nguyen"
+  ],
+  "org": "Radical Numerics",
+  "hosts": [
+    "Brandon Anderson",
+    "RJ Honicke"
+  ],
+  "published_at": "2026-09-23",
+  "duration_minutes": 92,
+  "source_url": "https://latent.space/p/bio-security-is-an-ai-arms-race-eric/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "B7DdNj_VjcU",
+  "cover": "covers/019-radical-numerics.jpg",
+  "cover_sha256": "be4bf32cea7627e3d4c9efb76563418600bebefc0c19c748ed9b49fd5967ca9d"
+}

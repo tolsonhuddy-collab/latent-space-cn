@@ -14,7 +14,7 @@ class TestSiteBuild(unittest.TestCase):
     def test_catalog_valid(self) -> None:
         catalog = json.loads((ROOT / "catalog" / "episodes.json").read_text(encoding="utf-8"))
         episodes = catalog["episodes"]
-        self.assertGreaterEqual(len(episodes), 10)
+        self.assertGreaterEqual(len(episodes), 20)
         ids = [ep["id"] for ep in episodes]
         self.assertEqual(len(ids), len(set(ids)))
 
@@ -38,7 +38,7 @@ class TestSiteBuild(unittest.TestCase):
             out = Path(tmp) / "dist"
             build_site.build_site(mode="published", out_dir=out)
             index_html = (out / "index.html").read_text(encoding="utf-8")
-            self.assertIn("10 期节目 · 10 期已定稿", index_html)
+            self.assertIn("20 期节目 · 20 期已定稿", index_html)
             for ep_id in (
                 "001-leash-bio",
                 "002-kohli-protein",
@@ -50,6 +50,16 @@ class TestSiteBuild(unittest.TestCase):
                 "008-materials-ai",
                 "009-caspai-materials",
                 "010-automating-science",
+                "011-boltz",
+                "012-noetik",
+                "013-vibephysics",
+                "014-fourth-law-drones",
+                "015-esm",
+                "016-axiom-math",
+                "017-xaira",
+                "018-john-platt",
+                "019-radical-numerics",
+                "020-periodic-labs",
             ):
                 self.assertTrue((out / "episodes" / f"{ep_id}.html").exists())
             article_html = (out / "episodes" / "004-chai-discovery.html").read_text(encoding="utf-8")
@@ -57,7 +67,7 @@ class TestSiteBuild(unittest.TestCase):
             self.assertIn('class="article-cover"', article_html)
             self.assertIn('property="og:image"', article_html)
             self.assertIn('src="covers/001-leash-bio.jpg"', index_html)
-            for ep_id in ("001-leash-bio", "010-automating-science"):
+            for ep_id in ("001-leash-bio", "010-automating-science", "011-boltz", "020-periodic-labs"):
                 self.assertTrue((out / "covers" / f"{ep_id}.jpg").exists())
 
     def test_cover_integrity(self) -> None:

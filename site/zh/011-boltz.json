@@ -1,0 +1,22 @@
+{
+  "id": "011-boltz",
+  "number": "011",
+  "title_zh": "开源生物分子模型从结构预测走向药物设计平台",
+  "title_en": "Beyond AlphaFold: How Boltz is Open-Sourcing the Future of Drug Discovery — Gabriele Corso & Jeremy Wohlwend, Boltz",
+  "guests": [
+    "Gabriele Corso",
+    "Jeremy Wohlwend"
+  ],
+  "org": "Boltz",
+  "hosts": [
+    "Brandon Anderson",
+    "RJ Honicke"
+  ],
+  "published_at": "2026-02-11",
+  "duration_minutes": 81,
+  "source_url": "https://latent.space/p/boltz/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。",
+  "youtube_id": "nP0N1kYLegc",
+  "cover": "covers/011-boltz.jpg",
+  "cover_sha256": "9651c806bf6b155a5b277474719c6b7fba1509e9e5d76247947495466da60b52"
+}

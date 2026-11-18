@@ -225,6 +225,231 @@
       "youtube_id": "XqoBSB3nsgw",
       "cover": "covers/010-automating-science.jpg",
       "cover_sha256": "6e7410059c9de8f5a0904965152184658a93ef7a8921e22131a52aafe7eed0c6"
+    },
+    {
+      "id": "011-boltz",
+      "number": "011",
+      "kind": "science",
+      "title_en": "Beyond AlphaFold: How Boltz is Open-Sourcing the Future of Drug Discovery — Gabriele Corso & Jeremy Wohlwend, Boltz",
+      "title_zh": "开源生物分子模型从结构预测走向药物设计平台",
+      "guests": [
+        "Gabriele Corso",
+        "Jeremy Wohlwend"
+      ],
+      "org": "Boltz",
+      "hosts": [
+        "Brandon Anderson",
+        "RJ Honicke"
+      ],
+      "published_at": "2026-02-11",
+      "duration_minutes": 81,
+      "source_url": "https://latent.space/p/boltz/",
+      "status": "reviewed",
+      "youtube_id": "nP0N1kYLegc",
+      "cover": "covers/011-boltz.jpg",
+      "cover_sha256": "9651c806bf6b155a5b277474719c6b7fba1509e9e5d76247947495466da60b52"
+    },
+    {
+      "id": "012-noetik",
+      "number": "012",
+      "kind": "science",
+      "title_en": "Training Transformers to solve 95% failure rate of Cancer Trials — Ron Alfa & Daniel Bear, Noetik",
+      "title_zh": "患者组织空间基础模型正在破解抗癌药临床试验失败困局",
+      "guests": [
+        "Ron Alfa",
+        "Daniel Bear"
+      ],
+      "org": "Noetik",
+      "hosts": [
+        "Brandon Anderson",
+        "RJ Honicke"
+      ],
+      "published_at": "2026-04-20",
+      "duration_minutes": 85,
+      "source_url": "https://latent.space/p/noetik/",
+      "status": "reviewed",
+      "youtube_id": "uqM8qjbLRHA",
+      "cover": "covers/012-noetik.jpg",
+      "cover_sha256": "f2e0e8be9697623ce4f52611df26350bcf5515af04b47f92fa5bf297b2ed9cb3"
+    },
+    {
+      "id": "013-vibephysics",
+      "number": "013",
+      "kind": "science",
+      "title_en": "Doing Vibe Physics — Alex Lupsasca, OpenAI",
+      "title_zh": "推理模型协助理论物理破解了单负散射振幅难题",
+      "guests": [
+        "Alex Lupsasca"
+      ],
+      "org": "Vanderbilt University & OpenAI",
+      "hosts": [
+        "Brandon Anderson",
+        "RJ Honicke"
+      ],
+      "published_at": "2026-05-05",
+      "duration_minutes": 92,
+      "source_url": "https://latent.space/p/lupsasca/",
+      "status": "reviewed",
+      "youtube_id": "9d899Ram9Bs",
+      "cover": "covers/013-vibephysics.jpg",
+      "cover_sha256": "2235397237993c13935a7c284a82905614b95c70eaad462269a2338cf81791bc"
+    },
+    {
+      "id": "014-fourth-law-drones",
+      "number": "014",
+      "kind": "science",
+      "title_en": "The Autonomous Drone Tech Stack & Economics of Drones — Yaroslav Azhnyuk, The Fourth Law & Guest Host Noah Smith, Noahpinion",
+      "title_zh": "自主无人机正在改写现代战场技术栈与防务工业经济",
+      "guests": [
+        "Yaroslav Azhnyuk",
+        "Noah Smith"
+      ],
+      "org": "The Fourth Law & Noahpinion",
+      "hosts": [
+        "Brandon Anderson",
+        "Noah Smith"
+      ],
+      "published_at": "2026-05-18",
+      "duration_minutes": 120,
+      "source_url": "https://latent.space/p/the-fourth-law/",
+      "status": "reviewed",
+      "youtube_id": "UmCZBwsibgs",
+      "cover": "covers/014-fourth-law-drones.jpg",
+      "cover_sha256": "cf9174097f119e75c994756eeaa22b3c8052c4f87b004f3cb958f84613e730a6"
+    },
+    {
+      "id": "015-esm",
+      "number": "015",
+      "kind": "science",
+      "title_en": "ESM: The Bitter Lesson is Coming for Proteins — Alex Rives, Biohub",
+      "title_zh": "宏基因组序列与规模法则推动蛋白质模型走向虚拟细胞",
+      "guests": [
+        "Alex Rives"
+      ],
+      "org": "Biohub",
+      "hosts": [
+        "Brandon Anderson",
+        "RJ Honicke"
+      ],
+      "published_at": "2026-05-27",
+      "duration_minutes": 70,
+      "source_url": "https://latent.space/p/esmfold2/",
+      "status": "reviewed",
+      "youtube_id": "XdevS0GSuiQ",
+      "cover": "covers/015-esm.jpg",
+      "cover_sha256": "3f29ca08229468f484e12d82dea8f8088630bd5fbf17cad940dd384e12a0df3b"
+    },
+    {
+      "id": "016-axiom-math",
+      "number": "016",
+      "kind": "science",
+      "title_en": "Scaling Past Informal AI — Carina Hong, Axiom Math",
+      "title_zh": "形式化数学验证正在把人工智能推理变成可复用底座",
+      "guests": [
+        "Carina Hong"
+      ],
+      "org": "Axiom Math",
+      "hosts": [
+        "Brandon Anderson",
+        "RJ Honicke"
+      ],
+      "published_at": "2026-06-03",
+      "duration_minutes": 93,
+      "source_url": "https://latent.space/p/axiom/",
+      "status": "reviewed",
+      "youtube_id": "abYcV5LHMG4",
+      "cover": "covers/016-axiom-math.jpg",
+      "cover_sha256": "207a28803252d431744485047864fcc4a3f9d2bd3ecff061713dded57e5adc57"
+    },
+    {
+      "id": "017-xaira",
+      "number": "017",
+      "kind": "science",
+      "title_en": "Causal Models Need Causal Data — Bo Wang & Ci Chu, Xaira Therapeutics",
+      "title_zh": "大规模因果扰动数据正在让虚拟细胞跨过线性基线",
+      "guests": [
+        "Bo Wang",
+        "Ci Chu"
+      ],
+      "org": "Xaira Therapeutics",
+      "hosts": [
+        "Brandon Anderson",
+        "RJ Honicke"
+      ],
+      "published_at": "2026-07-21",
+      "duration_minutes": 90,
+      "source_url": "https://latent.space/p/xaira/",
+      "status": "reviewed",
+      "youtube_id": "2AdS-2uuH80",
+      "cover": "covers/017-xaira.jpg",
+      "cover_sha256": "4bcae6ea2d892cb1fe55985e1ff1e2e219a78fb746e9b4e455b5c30b34ebba97"
+    },
+    {
+      "id": "018-john-platt",
+      "number": "018",
+      "kind": "science",
+      "title_en": "An Oscar, Two Asteroids, and the Algorithm in Your sklearn: John Platt on AI for Science",
+      "title_zh": "科学智能体与物理边界正在重塑科研与气候预测路径",
+      "guests": [
+        "John Platt"
+      ],
+      "org": "Google Research",
+      "hosts": [
+        "Brandon Anderson",
+        "RJ Honicke"
+      ],
+      "published_at": "2026-09-22",
+      "duration_minutes": 121,
+      "source_url": "https://latent.space/p/john-platt/",
+      "status": "reviewed",
+      "youtube_id": "2xBSGluFkG0",
+      "cover": "covers/018-john-platt.jpg",
+      "cover_sha256": "fe9c6dd98a12f0c291d5133d627fc5c611452bbde7712293022bd9deeb3fea30"
+    },
+    {
+      "id": "019-radical-numerics",
+      "number": "019",
+      "kind": "science",
+      "title_en": "Bio-security is an AI Arms Race — Eric Nguyen, Radical Numerics",
+      "title_zh": "基因组大模型推动生物设计走向攻防并行的军备竞赛",
+      "guests": [
+        "Eric Nguyen"
+      ],
+      "org": "Radical Numerics",
+      "hosts": [
+        "Brandon Anderson",
+        "RJ Honicke"
+      ],
+      "published_at": "2026-09-23",
+      "duration_minutes": 92,
+      "source_url": "https://latent.space/p/bio-security-is-an-ai-arms-race-eric/",
+      "status": "reviewed",
+      "youtube_id": "B7DdNj_VjcU",
+      "cover": "covers/019-radical-numerics.jpg",
+      "cover_sha256": "be4bf32cea7627e3d4c9efb76563418600bebefc0c19c748ed9b49fd5967ca9d"
+    },
+    {
+      "id": "020-periodic-labs",
+      "number": "020",
+      "kind": "science",
+      "title_en": "Synthesis Superintelligence: from Semiconductors to Superconductors — Liam Fedus & Ekin Dogus Cubuk, Periodic Labs",
+      "title_zh": "合成超级智能需要把大模型放进真实实验室",
+      "guests": [
+        "Liam Fedus",
+        "Ekin Dogus Cubuk"
+      ],
+      "org": "Periodic Labs",
+      "hosts": [
+        "swyx",
+        "Alessio"
+      ],
+      "published_at": "2026-10-08",
+      "duration_minutes": 84,
+      "source_url": "https://latent.space/p/periodic/",
+      "status": "reviewed",
+      "youtube_id": "YHiqVRxGViM",
+      "cover": "covers/020-periodic-labs.jpg",
+      "cover_sha256": "662839abb7f8ddd5c8e9cfa5fae0751bf5ae1145b02fbe44ade62167bd87c9cf"
     }
   ]
 }
