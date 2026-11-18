@@ -14,7 +14,7 @@
 ## 目录与进度
 
 - **节目目录**：10 期（Latent Space Science 子频道）
-- **已定稿发布**：4 篇（`001` Leash Bio、`004` Chai Discovery、`009` CuspAI、`010` FutureHouse / Edison Scientific），其余节目持续更新中。
+- **已定稿发布**：5 篇（`001` Leash Bio、`004` Chai Discovery、`008` MIT / Heather Kulik、`009` CuspAI、`010` FutureHouse / Edison Scientific），其余节目持续更新中。
 
 ## 本地构建与测试
 

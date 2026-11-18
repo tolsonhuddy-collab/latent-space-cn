@@ -1,0 +1,18 @@
+{
+  "id": "008-materials-ai",
+  "number": "008",
+  "title_zh": "缺乏实验真值与化学多样性让材料界难出通用折叠模型",
+  "title_en": "Why There Is No \"AlphaFold for Materials\" — AI for Materials Discovery with Heather Kulik",
+  "guests": [
+    "Heather Kulik"
+  ],
+  "org": "MIT",
+  "hosts": [
+    "swyx",
+    "Alessio"
+  ],
+  "published_at": "2026-03-26",
+  "duration_minutes": 80,
+  "source_url": "https://www.latent.space/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+}
