@@ -1,0 +1,18 @@
+{
+  "id": "003-anima-physics",
+  "number": "003",
+  "title_zh": "物理世界的连续规律需要不同于语言的基础模型",
+  "title_en": "\"We have foundation models for language, not for physics\" — Anima Anandkumar, Bren Professor of Computing",
+  "guests": [
+    "Anima Anandkumar"
+  ],
+  "org": "Caltech",
+  "hosts": [
+    "swyx",
+    "Alessio"
+  ],
+  "published_at": "2026-02-05",
+  "duration_minutes": 78,
+  "source_url": "https://www.latent.space/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+}

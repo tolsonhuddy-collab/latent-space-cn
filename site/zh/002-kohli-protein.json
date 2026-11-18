@@ -1,0 +1,19 @@
+{
+  "id": "002-kohli-protein",
+  "number": "002",
+  "title_zh": "算出单一静态结构的模型远没有真正解开蛋白质折叠难题",
+  "title_en": "Why AlphaFold Didn't Solve Protein Folding — Pushmeet Kohli, Google DeepMind & Sal Candido, Biohub",
+  "guests": [
+    "Pushmeet Kohli",
+    "Sal Candido"
+  ],
+  "org": "Google DeepMind & Biohub",
+  "hosts": [
+    "swyx",
+    "Alessio"
+  ],
+  "published_at": "2026-01-22",
+  "duration_minutes": 95,
+  "source_url": "https://www.latent.space/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+}

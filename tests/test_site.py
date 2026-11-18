@@ -38,12 +38,20 @@ class TestSiteBuild(unittest.TestCase):
             out = Path(tmp) / "dist"
             build_site.build_site(mode="published", out_dir=out)
             index_html = (out / "index.html").read_text(encoding="utf-8")
-            self.assertIn("10 期节目 · 5 期已定稿", index_html)
-            self.assertTrue((out / "episodes" / "001-leash-bio.html").exists())
-            self.assertTrue((out / "episodes" / "004-chai-discovery.html").exists())
-            self.assertTrue((out / "episodes" / "008-materials-ai.html").exists())
-            self.assertTrue((out / "episodes" / "009-caspai-materials.html").exists())
-            self.assertTrue((out / "episodes" / "010-automating-science.html").exists())
+            self.assertIn("10 期节目 · 10 期已定稿", index_html)
+            for ep_id in (
+                "001-leash-bio",
+                "002-kohli-protein",
+                "003-anima-physics",
+                "004-chai-discovery",
+                "005-lila-lab",
+                "006-genesis-diffusion",
+                "007-radical-ai",
+                "008-materials-ai",
+                "009-caspai-materials",
+                "010-automating-science",
+            ):
+                self.assertTrue((out / "episodes" / f"{ep_id}.html").exists())
             article_html = (out / "episodes" / "004-chai-discovery.html").read_text(encoding="utf-8")
             self.assertIn("通用蛋白质设计模型撑起了中立的新药研发软件层", article_html)
 

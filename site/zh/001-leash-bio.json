@@ -3,9 +3,14 @@
   "number": "001",
   "title_zh": "高通量分子结合实验正在把药物模型从化学家偏好带回物理事实",
   "title_en": "Lab in the Loop Cancer Drug — Ian Quigley, Leash Bio",
-  "guests": ["Ian Quigley"],
+  "guests": [
+    "Ian Quigley"
+  ],
   "org": "Leash Bio",
-  "hosts": ["swyx", "Alessio"],
+  "hosts": [
+    "swyx",
+    "Alessio"
+  ],
   "published_at": "2026-01-15",
   "duration_minutes": 82,
   "source_url": "https://www.latent.space/",

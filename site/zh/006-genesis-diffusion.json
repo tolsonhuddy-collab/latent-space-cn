@@ -1,0 +1,19 @@
+{
+  "id": "006-genesis-diffusion",
+  "number": "006",
+  "title_zh": "药物分子的三维结构预测正在成为扩散模型最前沿的战场",
+  "title_en": "The Coolest Diffusion Research Isn't in LLMs — Evan Feinberg & Sergey Edunov, Genesis Molecular AI",
+  "guests": [
+    "Evan Feinberg",
+    "Sergey Edunov"
+  ],
+  "org": "Genesis Molecular AI",
+  "hosts": [
+    "swyx",
+    "Alessio"
+  ],
+  "published_at": "2026-03-12",
+  "duration_minutes": 85,
+  "source_url": "https://www.latent.space/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+}

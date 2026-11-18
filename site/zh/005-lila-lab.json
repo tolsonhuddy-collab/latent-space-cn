@@ -1,0 +1,19 @@
+{
+  "id": "005-lila-lab",
+  "number": "005",
+  "title_zh": "未来的实验室应当像数据中心一样为科学模型持续生产新数据",
+  "title_en": "The Lab of the Future Should Feel Like a Data Center — Andy Beam & Rafa Gómez-Bombarelli, Lila Sciences",
+  "guests": [
+    "Andy Beam",
+    "Rafa Gómez-Bombarelli"
+  ],
+  "org": "Lila Sciences",
+  "hosts": [
+    "swyx",
+    "Alessio"
+  ],
+  "published_at": "2026-03-05",
+  "duration_minutes": 88,
+  "source_url": "https://www.latent.space/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+}
