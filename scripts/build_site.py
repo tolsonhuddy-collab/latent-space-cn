@@ -147,7 +147,7 @@ def load_json(path: Path, default: dict) -> dict:
 def build_demo_data() -> Tuple[dict, List[dict], Dict[str, Tuple[dict, str]]]:
     homepage = {
         "site_title": "Latent Space 中文精读",
-        "site_subtitle": "把一期科学长谈，读成一部中文长文。",
+        "site_subtitle": "来自硅谷，AI for Science 最前沿的讨论",
         "featured_id": "002-demo",
         "featured_label": "最新精读",
         "footer_lines": [
@@ -212,7 +212,7 @@ def collect_published_data(private_mode: bool = False) -> Tuple[dict, List[dict]
         HOMEPAGE_PATH,
         {
             "site_title": "Latent Space 中文精读",
-            "site_subtitle": "把一期科学长谈，读成一部中文长文。",
+            "site_subtitle": "来自硅谷，AI for Science 最前沿的讨论",
             "featured_id": "",
             "featured_label": "最新精读",
             "footer_lines": [],
@@ -439,7 +439,7 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
         shutil.copytree(covers_src, out_dir / "covers")
 
     site_title = homepage.get("site_title") or "Latent Space 中文精读"
-    site_subtitle = homepage.get("site_subtitle") or "把一期科学长谈，读成一部中文长文。"
+    site_subtitle = homepage.get("site_subtitle") or "来自硅谷，AI for Science 最前沿的讨论"
     total_count = len(episodes)
     pub_count = sum(1 for ep in episodes if ep["id"] in articles)
     stats_text = f"{total_count} 期节目 · {pub_count} 期已定稿"
