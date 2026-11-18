@@ -1,0 +1,15 @@
+# Local drafts, transcripts, and build outputs
+private/
+dist/
+inputs/
+content/
+source/
+sources/
+archives/
+grok/
+argon-noetik/
+.env*
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{SITE_TITLE}}</title>
+  <meta name="description" content="{{SITE_SUBTITLE}}" />
+  <link rel="alternate" type="application/atom+xml" title="{{SITE_TITLE}} Atom" href="{{BASE_PATH}}feed.xml" />
+  <link rel="stylesheet" href="{{BASE_PATH}}style.css" />
+  <script>
+    (function () {
+      var saved = localStorage.getItem("ls_cn_theme");
+      if (saved === "dark" || (!saved && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="search-box">
+        <input
+          id="catalog-search"
+          class="search-input"
+          type="search"
+          placeholder="按期号/主题/嘉宾搜索"
+          aria-label="按期号、主题或嘉宾搜索"
+        />
+      </div>
+      <div class="topbar-actions">
+        <button id="guide-open" class="topbar-btn" type="button">使用说明</button>
+        <button id="theme-toggle" class="topbar-btn" type="button" aria-label="切换明暗主题" title="切换明暗主题">
+          <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 3a9 9 0 0 0 0 18V3z" fill="currentColor"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="masthead">
+      <div class="container">
+        <h1 class="masthead-title">{{SITE_TITLE}}</h1>
+        <p class="masthead-subtitle">{{SITE_SUBTITLE}}</p>
+        <p class="masthead-stats">{{STATS_TEXT}}</p>
+      </div>
+    </section>
+
+    {{FEATURED_HTML}}
+
+    <section class="catalog-section">
+      <div class="container">
+        <div class="catalog-header">
+          <h2 class="catalog-heading">全部节目</h2>
+          <span id="catalog-count" class="catalog-count">共 {{TOTAL_COUNT}} 期</span>
+        </div>
+        <div id="episode-grid" class="episode-grid">
+          {{EPISODE_CARDS_HTML}}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <h2 class="footer-title">{{SITE_TITLE}}</h2>
+      <div class="footer-lines">
+        {{FOOTER_LINES_HTML}}
+      </div>
+      <div class="accordion">
+        <button id="disclaimer-toggle" class="accordion-trigger" type="button" aria-expanded="false">
+          <span>编辑、来源与免责说明</span>
+          <span id="disclaimer-icon">+</span>
+        </button>
+        <div id="disclaimer-panel" class="accordion-panel">
+          <p>本站为非官方中文精读归档，主要整理 Latent Space（含 Science 子频道）公开节目的英文逐字稿，经结构重排、中文改写与编辑校订后形成长文。</p>
+          <p>文中涉及的模型指标、实验数据与机构观点均以原节目逐字稿为准，未逐一核验原始论文，不构成科研、医疗或投资建议。如需完整原声与官方资料，请访问 Latent Space 原节目页。</p>
+          <p>订阅：<a href="{{BASE_PATH}}feed.xml">Atom 全文订阅</a> · <a href="{{BASE_PATH}}podcasts/latent-space/feed.xml">播客 RSS</a> · <a href="{{BASE_PATH}}latent-space-rss.opml">OPML</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="guide-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="guide-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="guide-modal-title">使用说明</h2>
+        <button id="guide-close" class="topbar-btn" type="button" aria-label="关闭">关闭 ✕</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Latent Space 中文精读</strong> 将科学长谈改写为可独立阅读的中文长文，而非逐句翻译或会议纪要。</p>
+        <ul>
+          <li><strong>检索：</strong>顶部搜索框支持按期号（如 <code>004</code>）、中文标题、英文原标题、嘉宾或机构名称实时筛选。</li>
+          <li><strong>状态：</strong>标有「已定稿」的节目可点击标题或封面进入全文精读；标有「待精读」的节目暂列目录并保留原节目链接。</li>
+          <li><strong>阅读：</strong>文章页支持调节字号（<code>A-</code> / <code>A+</code>）、切换明暗主题、目录跳转与阅读进度指示。</li>
+          <li><strong>订阅：</strong>页脚提供 Atom / RSS 与 OPML，可导入 Obsidian RSS Dashboard 或常用阅读器。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{BASE_PATH}}app.js"></script>
+</body>
+</html>

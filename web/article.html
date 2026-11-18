@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN" id="top">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{TITLE_ZH}} — {{SITE_TITLE}}</title>
+  <meta name="description" content="{{TITLE_EN}}" />
+  <meta property="og:title" content="{{TITLE_ZH}}" />
+  <meta property="og:description" content="{{TITLE_EN}}" />
+  {{OG_IMAGE_META}}
+  <link rel="stylesheet" href="{{BASE_PATH}}style.css" />
+  <script>
+    (function () {
+      var saved = localStorage.getItem("ls_cn_theme");
+      if (saved === "dark" || (!saved && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+      var fs = localStorage.getItem("ls_cn_font_size");
+      if (fs) {
+        document.documentElement.style.setProperty("--article-font-size", fs + "px");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div id="reading-progress" class="reading-progress"></div>
+
+  <header class="article-topbar">
+    <div class="container article-topbar-inner">
+      <a class="topbar-btn" href="{{BASE_PATH}}index.html">← 节目目录 · 中文精读</a>
+      <a class="article-wordmark" href="{{BASE_PATH}}index.html">{{SITE_TITLE}}</a>
+      <div class="article-controls">
+        <a class="topbar-btn" href="{{BASE_PATH}}feed.xml">RSS 订阅</a>
+        <button id="font-dec" class="font-btn" type="button" aria-label="减小字号">A−</button>
+        <span id="font-size-val" class="font-size-val">18</span>
+        <button id="font-inc" class="font-btn" type="button" aria-label="增大字号">A＋</button>
+        <button id="theme-toggle" class="topbar-btn" type="button" aria-label="切换明暗主题" title="切换明暗主题">
+          <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 3a9 9 0 0 0 0 18V3z" fill="currentColor"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="article-layout">
+      <article class="article-main">
+        <header class="article-header">
+          <div class="article-kicker">非官方阅读项目 · 中文精读 · {{NUMBER}}</div>
+          <h1 class="article-title">{{TITLE_ZH}}</h1>
+          <p class="article-en">{{TITLE_EN}}</p>
+          <div class="article-meta">{{META_TEXT}}</div>
+          <p class="editor-note-inline">依据英文原稿编译，编辑与来源说明见<a href="#editor-sources">文末</a>。</p>
+        </header>
+
+        <details class="mobile-toc">
+          <summary>目录</summary>
+          <ul class="toc-list">
+            {{TOC_HTML}}
+          </ul>
+        </details>
+
+        <div id="reading" class="article-content">
+          {{ARTICLE_BODY_HTML}}
+        </div>
+
+        <footer class="article-footer">
+          <div class="end-mark" aria-hidden="true">■</div>
+          <details id="editor-sources" class="source-note-box">
+            <summary>编辑与来源说明</summary>
+            <p>{{SOURCE_NOTE}}</p>
+          </details>
+          <nav class="article-nav" aria-label="上下篇导航">
+            <div>{{PREV_LINK_HTML}}</div>
+            <div>{{NEXT_LINK_HTML}}</div>
+          </nav>
+        </footer>
+      </article>
+
+      <aside class="article-toc" aria-label="文章目录">
+        <p class="toc-title">目录</p>
+        <ul class="toc-list">
+          {{TOC_HTML}}
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <div class="reading-status">
+    <div class="container reading-status-inner">
+      <span id="reading-pct">阅读进度 0%</span>
+      <a href="#top">回到页首 ↑</a>
+    </div>
+  </div>
+
+  <script src="{{BASE_PATH}}app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "id": "004-chai-discovery",
+  "number": "004",
+  "title_zh": "能从头设计抗体的模型，正在把新药研发变成软件迭代循环",
+  "title_en": "The BioAI Phase Shift — Matthew McPartlon & Neil Patil, Chai Discovery",
+  "guests": ["Matthew McPartlon", "Neil Patil"],
+  "org": "Chai Discovery",
+  "hosts": ["swyx", "Alessio"],
+  "published_at": "2026-02-26",
+  "duration_minutes": 100,
+  "source_url": "https://www.latent.space/",
+  "source_note": "依据 Latent Space 官方英文逐字稿整理编写，删去广告与寒暄，未逐一核实提及的研究与原始数据，原节目请见 Latent Space 官网。"
+}
