@@ -13,8 +13,8 @@
   --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", Georgia, serif;
   --sans: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --max-width: 1080px;
-  --article-font-size: 18px;
+  --max-width: 1160px;
+  --article-font-size: 20px;
 }
 
 [data-theme="dark"] {
@@ -142,36 +142,38 @@ button {
 /* Masthead */
 .masthead {
   text-align: center;
-  padding: 26px 0 38px;
+  padding: 32px 0 42px;
 }
 
 .masthead-title {
-  margin: 0 0 10px;
+  margin: 0 0 14px;
   font-family: var(--serif);
-  font-size: clamp(2rem, 4.2vw, 2.75rem);
+  font-size: clamp(2.5rem, 5.2vw, 3.85rem);
   font-weight: 700;
   letter-spacing: 0.02em;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .masthead-subtitle {
-  margin: 0 0 8px;
-  font-size: 14px;
-  color: var(--text-muted);
+  margin: 0 0 10px;
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.5vw, 1.1875rem);
+  color: var(--text);
+  line-height: 1.5;
 }
 
 .masthead-stats {
   margin: 0;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-subtle);
   letter-spacing: 0.04em;
 }
 
 /* Featured section */
 .featured-section {
-  border-top: 1px solid var(--border);
+  border-top: 4px double var(--border-strong);
   border-bottom: 1px solid var(--border);
-  padding: 36px 0 42px;
+  padding: 40px 0 46px;
 }
 
 .featured-grid {
@@ -229,7 +231,7 @@ button {
 }
 
 .featured-kicker {
-  font-size: 11.5px;
+  font-size: 12.5px;
   color: var(--text-subtle);
   letter-spacing: 0.08em;
   margin-bottom: 12px;
@@ -238,23 +240,23 @@ button {
 .featured-title {
   margin: 0 0 14px;
   font-family: var(--serif);
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
   font-weight: 700;
-  line-height: 1.42;
+  line-height: 1.38;
 }
 
 .featured-en {
   margin: 0 0 18px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--text-muted);
   line-height: 1.5;
 }
 
 .featured-meta {
   margin: 0 0 22px;
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--text-subtle);
   line-height: 1.6;
 }
@@ -266,9 +268,9 @@ button {
 
 .btn-outline {
   display: inline-block;
-  padding: 7px 20px;
+  padding: 9px 24px;
   border: 1px solid var(--border-strong);
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--text);
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
@@ -294,12 +296,12 @@ button {
 .catalog-heading {
   margin: 0;
   font-family: var(--serif);
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   font-weight: 700;
 }
 
 .catalog-count {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-subtle);
 }
 
@@ -359,7 +361,7 @@ button {
 }
 
 .card-status-line {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-subtle);
   margin-bottom: 6px;
   letter-spacing: 0.03em;
@@ -368,9 +370,9 @@ button {
 .card-title {
   margin: 0 0 8px;
   font-family: var(--serif);
-  font-size: 15.5px;
+  font-size: 17.5px;
   font-weight: 700;
-  line-height: 1.48;
+  line-height: 1.45;
   color: var(--text);
 }
 
@@ -383,21 +385,21 @@ button {
   margin: 0 0 8px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--text-muted);
-  line-height: 1.45;
+  line-height: 1.48;
 }
 
 .card-guests {
   margin: 0 0 6px;
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
 .card-meta {
   margin-top: auto;
-  padding-top: 4px;
-  font-size: 11px;
+  padding-top: 6px;
+  font-size: 12.5px;
   color: var(--text-subtle);
 }
 
@@ -638,7 +640,7 @@ button {
 .article-toc {
   position: sticky;
   top: 74px;
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--text-muted);
   max-height: calc(100vh - 96px);
   overflow-y: auto;
@@ -647,7 +649,7 @@ button {
 .toc-title {
   font-family: var(--serif);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text);
   margin: 0 0 12px;
 }
@@ -679,7 +681,7 @@ button {
 }
 
 .article-main {
-  max-width: 70ch;
+  max-width: 72ch;
 }
 
 .article-header {
@@ -689,7 +691,7 @@ button {
 }
 
 .article-kicker {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-subtle);
   margin-bottom: 10px;
 }
@@ -697,7 +699,7 @@ button {
 .article-title {
   margin: 0 0 12px;
   font-family: var(--serif);
-  font-size: clamp(1.65rem, 3.2vw, 2.2rem);
+  font-size: clamp(1.85rem, 3.4vw, 2.45rem);
   font-weight: 700;
   line-height: 1.35;
 }
@@ -706,12 +708,12 @@ button {
   margin: 0 0 16px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15.5px;
   color: var(--text-muted);
 }
 
 .article-meta {
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--text-subtle);
   margin-bottom: 16px;
 }
@@ -850,13 +852,18 @@ button {
 }
 
 .featured-cover.has-cover img,
-.card-thumb.has-cover img {
-  transition: transform 0.35s ease, opacity 0.2s ease;
+.card-thumb.has-cover img,
+.article-cover img {
+  filter: grayscale(100%) contrast(1.06);
+  opacity: 0.94;
+  transition: transform 0.35s ease, filter 0.25s ease, opacity 0.25s ease;
 }
 
 .featured-cover.has-cover:hover img,
 .episode-card.is-published .card-thumb.has-cover:hover img {
   transform: scale(1.02);
+  filter: grayscale(100%) contrast(1.12);
+  opacity: 1;
 }
 
 .card-thumb.has-cover .card-num,

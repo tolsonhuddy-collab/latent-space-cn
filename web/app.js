@@ -86,10 +86,10 @@
   function getFontSize() {
     var raw = getComputedStyle(document.documentElement).getPropertyValue("--article-font-size");
     var val = parseInt(raw, 10);
-    return isNaN(val) ? 18 : val;
+    return isNaN(val) ? 20 : val;
   }
   function setFontSize(val) {
-    var clamped = Math.max(16, Math.min(24, val));
+    var clamped = Math.max(16, Math.min(26, val));
     document.documentElement.style.setProperty("--article-font-size", clamped + "px");
     localStorage.setItem("ls_cn_font_size", String(clamped));
     if (fsValEl) fsValEl.textContent = String(clamped);
