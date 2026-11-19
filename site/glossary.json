@@ -1,0 +1,820 @@
+{
+  "terms": [
+    {
+      "id": "scaling-laws",
+      "zh": "规模法则",
+      "en": "Scaling Laws",
+      "category": "人工智能与计算",
+      "aliases": ["规模法则", "scaling laws", "Scaling Laws"],
+      "definition": "指随着模型参数量、训练数据规模和算力的同步扩大，模型性能往往会按可预测的幂律规律持续提升，是当代大模型研发的核心经验规律。"
+    },
+    {
+      "id": "bitter-lesson",
+      "zh": "苦涩的教训",
+      "en": "The Bitter Lesson",
+      "category": "人工智能与计算",
+      "aliases": ["苦涩的教训", "Bitter Lesson"],
+      "definition": "强化学习先驱 Rich Sutton 在 2019 年提出的著名观察：长期来看，依赖大量算力和数据的通用学习方法，几乎总能战胜人工编写先验规则的系统。"
+    },
+    {
+      "id": "transformer",
+      "zh": "Transformer 架构",
+      "en": "Transformer",
+      "category": "人工智能与计算",
+      "aliases": ["Transformer"],
+      "definition": "基于自注意力机制的神经网络架构。它不仅驱动了现代大语言模型，也通过把氨基酸、基因或空间位置当成「词元」，成为科学基础模型的核心底座。"
+    },
+    {
+      "id": "diffusion-model",
+      "zh": "扩散模型",
+      "en": "Diffusion Model",
+      "category": "人工智能与计算",
+      "aliases": ["扩散模型", "diffusion models", "diffusion model"],
+      "definition": "一类先学习如何给数据逐步加噪、再学习逆向「去噪生成」的生成式模型，最初用于图像生成，如今广泛用于从零生成三维分子与蛋白质结构。"
+    },
+    {
+      "id": "self-supervised",
+      "zh": "自监督学习",
+      "en": "Self-Supervised Learning",
+      "category": "人工智能与计算",
+      "aliases": ["自监督学习", "self-supervised learning"],
+      "definition": "不需要人工逐条贴标签，而是让模型直接从海量原始数据自身构造预测任务（例如遮住一段序列让它补全），从而学出底层规律。"
+    },
+    {
+      "id": "masked-lm",
+      "zh": "掩码语言建模",
+      "en": "MLM / MAE · Masked Modeling",
+      "category": "人工智能与计算",
+      "aliases": ["掩码语言建模", "掩码自编码器"],
+      "definition": "故意遮住序列或数据矩阵中的一部分位置，训练模型根据上下文把缺失内容还原出来，常用于训练蛋白质与单细胞基础模型。"
+    },
+    {
+      "id": "mae",
+      "zh": "平均绝对误差",
+      "en": "MAE · Mean Absolute Error",
+      "category": "人工智能与计算",
+      "aliases": ["平均绝对误差", "MAE"],
+      "definition": "衡量模型预测值与真实值之间绝对差值平均数的指标。但在单细胞表达等极度稀疏的数据里，只看 MAE 容易被大量零值掩盖真实差异。"
+    },
+    {
+      "id": "active-learning",
+      "zh": "主动学习",
+      "en": "Active Learning",
+      "category": "人工智能与计算",
+      "aliases": ["主动学习", "active learning"],
+      "definition": "让模型边学边挑最有信息量的新样本去做实验测试，再把实测结果喂回模型迭代，从而用更少湿实验次数锁定最优分子或材料。"
+    },
+    {
+      "id": "reinforcement-learning",
+      "zh": "强化学习",
+      "en": "Reinforcement Learning (RL)",
+      "category": "人工智能与计算",
+      "aliases": ["强化学习", "reinforcement learning"],
+      "definition": "智能体在环境或验证器中不断尝试动作并根据奖励信号调整策略的训练范式，是推理模型和自主科学智能体的关键训练方式。"
+    },
+    {
+      "id": "reasoning-model",
+      "zh": "推理模型",
+      "en": "Reasoning Model",
+      "category": "人工智能与计算",
+      "aliases": ["推理模型"],
+      "definition": "经过强化学习训练、能够在给出最终答案前在内部展开长链条推演与自我检查的AI模型，擅长处理数学证明与复杂科学推导。"
+    },
+    {
+      "id": "chain-of-thought",
+      "zh": "思维链",
+      "en": "Chain of Thought (CoT)",
+      "category": "人工智能与计算",
+      "aliases": ["思维链"],
+      "definition": "让模型把复杂问题拆解成一连串中间推理步骤再得出结论的方式，相当于给了模型在纸上打草稿的计算时间。"
+    },
+    {
+      "id": "world-model",
+      "zh": "世界模型",
+      "en": "World Model",
+      "category": "人工智能与计算",
+      "aliases": ["世界模型", "world models", "world model"],
+      "definition": "能够在内部表征物理、化学或生物系统运作规则，并在实施真实干预前推演「如果这样做会发生什么」的模型。"
+    },
+    {
+      "id": "sparse-autoencoder",
+      "zh": "稀疏自编码器",
+      "en": "SAE · Sparse Autoencoder",
+      "category": "人工智能与计算",
+      "aliases": ["稀疏自编码器", "SAE"],
+      "definition": "一种机制可解释性工具，用来把大模型内部高度纠缠的神经元激活拆解成少数稀疏、人类能读懂的生物学或物理概念。"
+    },
+    {
+      "id": "neural-operator",
+      "zh": "神经算子",
+      "en": "Neural Operator",
+      "category": "人工智能与计算",
+      "aliases": ["神经算子", "neural operators", "Neural Operator"],
+      "definition": "专门学习连续函数空间之间映射关系的神经网络架构，不像普通网络那样受限于固定网格分辨率，适合流体力学与气象偏微分方程求解。"
+    },
+    {
+      "id": "gnn",
+      "zh": "图神经网络",
+      "en": "GNN · Graph Neural Network",
+      "category": "人工智能与计算",
+      "aliases": ["图神经网络", "graph neural networks", "GNN"],
+      "definition": "把原子、化学键或节点关系直接表示成图结构并沿连接传递信息的神经网络，常用于分子性质预测与三维物理建模。"
+    },
+    {
+      "id": "vae",
+      "zh": "变分自编码器",
+      "en": "VAE · Variational Autoencoder",
+      "category": "人工智能与计算",
+      "aliases": ["变分自编码器", "variational autoencoders", "VAE"],
+      "definition": "能把高维分子或图像数据压缩到连续隐空间、再从隐空间采样生成新样本的经典深度生成架构。"
+    },
+    {
+      "id": "ssm",
+      "zh": "状态空间模型",
+      "en": "SSM · State Space Model",
+      "category": "人工智能与计算",
+      "aliases": ["状态空间模型", "StripedHyena"],
+      "definition": "以固定状态演化处理超长序列的架构（如 StripedHyena / Mamba）。相比标准注意力机制，它能以更低显存开销直接处理百万碱基级的完整基因组。"
+    },
+    {
+      "id": "mcmc",
+      "zh": "马尔可夫链蒙特卡洛",
+      "en": "MCMC · Markov Chain Monte Carlo",
+      "category": "人工智能与计算",
+      "aliases": ["马尔可夫链蒙特卡洛", "MCMC"],
+      "definition": "一类通过在状态空间随机游走来从复杂概率分布中抽样的经典统计与物理计算方法，常用于材料构型或分子热力学模拟。"
+    },
+    {
+      "id": "svm",
+      "zh": "支持向量机",
+      "en": "SVM · Support Vector Machine",
+      "category": "人工智能与计算",
+      "aliases": ["支持向量机", "SVM"],
+      "definition": "在深度学习兴起前广泛使用的经典机器学习分类器，通过寻找最大间隔超平面来区分不同类别的数据样本。"
+    },
+    {
+      "id": "xgboost",
+      "zh": "梯度提升树",
+      "en": "XGBoost",
+      "category": "人工智能与计算",
+      "aliases": ["XGBoost"],
+      "definition": "基于决策树集成的高效表格数据建模算法，至今仍是许多药物小分子筛选基准测试里极难被神经网络轻松拉开的强基线。"
+    },
+    {
+      "id": "out-of-distribution",
+      "zh": "分布外泛化",
+      "en": "OOD · Out-of-Distribution",
+      "category": "人工智能与计算",
+      "aliases": ["分布外", "out-of-distribution", "OOD"],
+      "definition": "考验模型在面对与训练集结构、细胞系或环境条件完全不同的全新样本时，能否依然做出准确预测的能力。"
+    },
+    {
+      "id": "open-weights",
+      "zh": "开放权重",
+      "en": "Open Weights",
+      "category": "人工智能与计算",
+      "aliases": ["开放权重", "开源权重", "open weights"],
+      "definition": "将训练好的模型参数文件公开发布、允许研究者下载本地部署或再训练的做法；其开放与商用授权边界在生物安全领域尤为敏感。"
+    },
+    {
+      "id": "computer-vision",
+      "zh": "计算机视觉",
+      "en": "Computer Vision",
+      "category": "人工智能与计算",
+      "aliases": ["计算机视觉", "computer vision"],
+      "definition": "让机器从图像、视频或显微镜切片中识别形态特征、跟踪目标并提取定量信息的人工智能分支。"
+    },
+    {
+      "id": "token",
+      "zh": "词元",
+      "en": "Token",
+      "category": "人工智能与计算",
+      "aliases": ["词元", "tokens", "token"],
+      "definition": "序列模型处理的基本最小单元；在科学模型里，一个词元可以是单个氨基酸、DNA 碱基、化学键符号，或一小块空间组织切片。"
+    },
+    {
+      "id": "alphafold",
+      "zh": "AlphaFold 蛋白质结构预测模型",
+      "en": "AlphaFold / AlphaFold 3",
+      "category": "生物与新药",
+      "aliases": ["AlphaFold-Multimer", "AlphaFold"],
+      "definition": "Google DeepMind 开发的里程碑式人工智能系统，首次将仅凭氨基酸序列预测蛋白质静态三维结构的精度推进到接近实验测定水平。"
+    },
+    {
+      "id": "pdb",
+      "zh": "蛋白质数据库",
+      "en": "PDB · Protein Data Bank",
+      "category": "生物与新药",
+      "aliases": ["蛋白质数据库", "PDB"],
+      "definition": "全球生命科学界共享的实验测定三维生物大分子结构档案馆，收录了七十多年来通过 X 射线晶体学和冷冻电镜积累的结构真值。"
+    },
+    {
+      "id": "msa",
+      "zh": "多序列比对",
+      "en": "MSA · Multiple Sequence Alignment",
+      "category": "生物与新药",
+      "aliases": ["多序列比对", "MSA"],
+      "definition": "把不同物种里的同源蛋白质序列排在一起比对，借演化过程中「一处突变另一处协同补偿」的共演化信号反推三维接触关系。"
+    },
+    {
+      "id": "protein-lm",
+      "zh": "蛋白质语言模型",
+      "en": "Protein Language Model",
+      "category": "生物与新药",
+      "aliases": ["蛋白质语言模型", "protein language model"],
+      "definition": "将蛋白质氨基酸序列视作一种「生命语言」的大模型，直接从海量天然序列中学习折叠规律与功能约束，甚至可在无序列比对下设计新蛋白。"
+    },
+    {
+      "id": "co-folding",
+      "zh": "共折叠",
+      "en": "Co-folding",
+      "category": "生物与新药",
+      "aliases": ["共折叠", "co-folding"],
+      "definition": "把蛋白质靶标和小分子配体或抗体放在同一个模型中联合预测它们结合后的复合物三维结构，比传统先算蛋白再硬塞小分子更贴近真实诱导契合。"
+    },
+    {
+      "id": "conformation",
+      "zh": "构象",
+      "en": "Conformation",
+      "category": "生物与新药",
+      "aliases": ["构象", "conformation"],
+      "definition": "同一个蛋白质或分子在热运动和环境变化下能够采取的不同三维空间形态；许多药物成败取决于能否精准结合某个瞬间动态构象。"
+    },
+    {
+      "id": "binding-affinity",
+      "zh": "结合亲和力",
+      "en": "Binding Affinity",
+      "category": "生物与新药",
+      "aliases": ["结合亲和力", "binding affinity"],
+      "definition": "量化药物小分子或抗体与靶标蛋白粘合得有多牢固的指标（常用 IC50 或 Kd 表示），直接决定了药效强弱与最低有效剂量。"
+    },
+    {
+      "id": "molecular-docking",
+      "zh": "分子对接",
+      "en": "Molecular Docking",
+      "category": "生物与新药",
+      "aliases": ["分子对接", "小分子对接", "molecular docking"],
+      "definition": "计算小分子化合物以什么姿势和角度嵌入靶标蛋白活性口袋的计算方法，是虚拟药物筛选最基础的一道关卡。"
+    },
+    {
+      "id": "ligand",
+      "zh": "配体",
+      "en": "Ligand",
+      "category": "生物与新药",
+      "aliases": ["配体", "ligand"],
+      "definition": "在生物中指能够特异性结合到靶标蛋白或受体上的小分子药物或信号分子；在配位化学中则指结合在中心金属离子周围的基团。"
+    },
+    {
+      "id": "target",
+      "zh": "药物靶点",
+      "en": "Drug Target",
+      "category": "生物与新药",
+      "aliases": ["靶点"],
+      "definition": "疾病通路中负责关键生理功能、药物分子需要精准结合并调控的生物大分子（通常是特定蛋白质或核酸）。"
+    },
+    {
+      "id": "antibody",
+      "zh": "抗体",
+      "en": "Antibody",
+      "category": "生物与新药",
+      "aliases": ["单克隆抗体", "抗体"],
+      "definition": "免疫系统用来精确识别病毒或病变细胞的 Y 形大分子蛋白质，相比传统小分子药分子量更大、特异性高且研发周期通常更长。"
+    },
+    {
+      "id": "cdr-loops",
+      "zh": "互补决定区环",
+      "en": "CDR Loops · Complementarity-Determining Regions",
+      "category": "生物与新药",
+      "aliases": ["互补决定区环", "互补决定区", "CDR loops", "CDR"],
+      "definition": "抗体分子末端负责直接抓握抗原靶点的六段高度可变的柔性环状结构，是 AI 从零设计全新抗体的最关键、也最难算准的部位。"
+    },
+    {
+      "id": "scfv",
+      "zh": "单链可变区抗体片段",
+      "en": "scFv · Single-Chain Variable Fragment",
+      "category": "生物与新药",
+      "aliases": ["scFvs", "scFv", "单链可变区"],
+      "definition": "只保留抗体识别抗原的核心可变区并串联成的一段小型化蛋白，体积轻巧，便于高通量实验筛测和细胞治疗工程改造。"
+    },
+    {
+      "id": "del",
+      "zh": "DNA 编码化合物库",
+      "en": "DEL · DNA-Encoded Library",
+      "category": "生物与新药",
+      "aliases": ["DNA 编码化合物库", "DNA编码化合物库", "DEL"],
+      "definition": "给海量合成分子贴上独一无二的 DNA 分子条形码，让实验室能在同一支试管里一次测试亿级分子能否结合靶标，并靠高通量测序读出结合结果。"
+    },
+    {
+      "id": "smiles",
+      "zh": "简化分子线性输入规范",
+      "en": "SMILES",
+      "category": "生物与新药",
+      "aliases": ["简化分子线性输入规范", "SMILES"],
+      "definition": "用一串 ASCII 文本字符（如 C、O、双键和括号）无歧义地写出分子二维化学结构的标准编码格式，方便交给语言模型或化学软件处理。"
+    },
+    {
+      "id": "selfies",
+      "zh": "自引用嵌入字符串",
+      "en": "SELFIES",
+      "category": "生物与新药",
+      "aliases": ["自引用嵌入字符串", "SELFIES"],
+      "definition": "一种专门设计用来替代 SMILES 的分子文本表示法，能保证生成模型随机拼出的任意字符串几乎百分百对应化学上合法的分子图。"
+    },
+    {
+      "id": "admet",
+      "zh": "药代动力学与毒性性质",
+      "en": "ADME / ADMET",
+      "category": "生物与新药",
+      "aliases": ["ADMET", "ADME"],
+      "definition": "吸收（Absorption）、分布（Distribution）、代谢（Metabolism）、排泄（Excretion）与毒性（Toxicity）的缩写，决定结合紧的分子能否真正成为安全口服药。"
+    },
+    {
+      "id": "pcr",
+      "zh": "聚合酶链式反应",
+      "en": "PCR · Polymerase Chain Reaction",
+      "category": "生物与新药",
+      "aliases": ["聚合酶链式反应", "PCR"],
+      "definition": "在体外把微量特定 DNA 片段以指数级快速扩增千万倍的基础分子生物学技术，常用于在筛选后读出结合分子的条形码。"
+    },
+    {
+      "id": "cro",
+      "zh": "合同研究组织",
+      "en": "CRO · Contract Research Organization",
+      "category": "生物与新药",
+      "aliases": ["合同研究组织", "CRO"],
+      "definition": "为药企和生物科技公司承接合成化合物、细胞检测或动物实验等外包研发服务的专业实验机构。"
+    },
+    {
+      "id": "clinical-trial",
+      "zh": "临床试验",
+      "en": "Clinical Trial",
+      "category": "生物与新药",
+      "aliases": ["临床试验"],
+      "definition": "候选药物在获批上市前于人体志愿者和患者中分期测试安全性与疗效的阶段；肿瘤领域临床试验失败率长期高达九成以上。"
+    },
+    {
+      "id": "biomarker",
+      "zh": "生物标志物",
+      "en": "Biomarker",
+      "category": "生物与新药",
+      "aliases": ["生物标志物", "biomarker"],
+      "definition": "能够客观指示生理病理状态或预测某类患者是否对特定药物起效的基因突变、蛋白表达或影像特征。"
+    },
+    {
+      "id": "tme",
+      "zh": "肿瘤微环境",
+      "en": "TME · Tumor Microenvironment",
+      "category": "生物与新药",
+      "aliases": ["肿瘤微环境", "tumor microenvironment"],
+      "definition": "实体瘤内部及周围由癌细胞、免疫细胞、血管和基质共同构成的三维生态战场，极大影响免疫疗法能否起效。"
+    },
+    {
+      "id": "checkpoint-inhibitor",
+      "zh": "免疫检查点抑制剂",
+      "en": "Immune Checkpoint Inhibitor",
+      "category": "生物与新药",
+      "aliases": ["免疫检查点抑制剂", "免疫检查点"],
+      "definition": "通过解除肿瘤对免疫 T 细胞的「刹车信号」（如 PD-1/PD-L1），重新激活患者自身免疫系统攻击癌细胞的现代抗癌疗法。"
+    },
+    {
+      "id": "he-stain",
+      "zh": "苏木精与伊红染色",
+      "en": "H&E Staining",
+      "category": "生物与新药",
+      "aliases": ["苏木精与伊红", "H&E 染色", "H&E"],
+      "definition": "病理科百年来最通用的组织切片双色染色方法：细胞核呈蓝紫色、细胞质呈粉红色，几乎每家医院的肿瘤活检都会产生海量 H&E 切片。"
+    },
+    {
+      "id": "immunofluorescence",
+      "zh": "多重免疫荧光染色",
+      "en": "Multiplex Immunofluorescence",
+      "category": "生物与新药",
+      "aliases": ["多重免疫荧光", "免疫荧光", "multiplex immunofluorescence"],
+      "definition": "在同一张患者组织切片上利用多轮荧光抗体染色并成像，能同时定位几十种免疫蛋白和癌细胞信号的空间分布。"
+    },
+    {
+      "id": "spatial-omics",
+      "zh": "空间组学 / 空间生物学",
+      "en": "Spatial Omics / Spatial Biology",
+      "category": "生物与新药",
+      "aliases": ["空间组学", "空间生物学", "spatial omics"],
+      "definition": "不打碎组织细胞，直接在完整组织切片上保留每个细胞精确空间坐标的同时测定基因或蛋白表达的前沿测量技术。"
+    },
+    {
+      "id": "virtual-cell",
+      "zh": "虚拟细胞",
+      "en": "Virtual Cell",
+      "category": "生物与新药",
+      "aliases": ["虚拟细胞", "virtual cell"],
+      "definition": "用大规模多组学与扰动数据训练的计算模型，试图在计算机里模拟真实细胞或患者组织在加药或基因编辑后如何反应。"
+    },
+    {
+      "id": "transcriptomics",
+      "zh": "单细胞转录组",
+      "en": "scRNA-seq · Single-Cell Transcriptomics",
+      "category": "生物与新药",
+      "aliases": ["单细胞转录组", "single-cell transcriptomics", "转录组"],
+      "definition": "逐一测量成千上万个单个细胞内部正在转录出的信使 RNA 数量，用来精细刻画每个细胞的即时状态与基因调控活动。"
+    },
+    {
+      "id": "scgpt",
+      "zh": "scGPT 单细胞基础模型",
+      "en": "scGPT",
+      "category": "生物与新药",
+      "aliases": ["scGPT"],
+      "definition": "由 Bo Wang 团队在 2023 年发布的单细胞生物学早期基础模型之一，利用生成式预训练对数千万个单细胞的基因表达规律进行建模。"
+    },
+    {
+      "id": "perturb-seq",
+      "zh": "高通量扰动测序",
+      "en": "Perturb-seq",
+      "category": "生物与新药",
+      "aliases": ["Perturb-seq"],
+      "definition": "把 CRISPR 基因编辑池和单细胞测序结合起来的实验技术，能一次性并行关闭上万个不同基因，并直接测出每个细胞内部的因果连锁变化。"
+    },
+    {
+      "id": "crispr",
+      "zh": "CRISPR 基因编辑系统",
+      "en": "CRISPR-Cas / CRISPR-Cas9",
+      "category": "生物与新药",
+      "aliases": ["CRISPR-Cas9", "CRISPR-Cas", "CRISPR"],
+      "definition": "源自细菌免疫机制的精确基因编辑工具，像分子剪刀一样在预设 DNA 位点完成切割、敲除或改写，是现代因果生物学实验的核心武器。"
+    },
+    {
+      "id": "gene-knockout",
+      "zh": "基因敲除",
+      "en": "Gene Knockout",
+      "category": "生物与新药",
+      "aliases": ["基因敲除", "gene knockout"],
+      "definition": "用基因编辑手段定点使细胞里的某一个基因彻底失去功能，借观察后续反应来反推这个基因在生命网络里的真实因果作用。"
+    },
+    {
+      "id": "linear-baseline",
+      "zh": "线性基线",
+      "en": "Linear Baseline",
+      "category": "生物与新药",
+      "aliases": ["线性基线", "linear baseline"],
+      "definition": "单细胞扰动预测评测中一度让大型深度学习模型屡屡翻车的简单线性回归对比模型；跨越非线性组合泛化才是虚拟细胞的核心门槛。"
+    },
+    {
+      "id": "metagenomics",
+      "zh": "宏基因组学",
+      "en": "Metagenomics",
+      "category": "生物与新药",
+      "aliases": ["宏基因组", "metagenomics"],
+      "definition": "不必单独培养微生物，直接对土壤、海洋或肠道环境样品里的全部 DNA 混合物测序，是发掘数十亿条全新未知蛋白序列的源头金矿。"
+    },
+    {
+      "id": "transcription-factor",
+      "zh": "转录因子与结合基序",
+      "en": "Transcription Factor & Binding Motif",
+      "category": "生物与新药",
+      "aliases": ["转录因子结合基序", "转录因子"],
+      "definition": "能结合到基因组特定短 DNA 序列（「结合基序」）上、像开关一样决定附近基因何时开启或关闭的调控蛋白质。"
+    },
+    {
+      "id": "bacteriophage",
+      "zh": "噬菌体",
+      "en": "Bacteriophage",
+      "category": "生物与新药",
+      "aliases": ["噬菌体", "bacteriophage"],
+      "definition": "专门感染并裂解细菌的微型病毒。因基因组极其精简且可在实验室安全培养，常被选作测试 AI 从零写完整基因组的首批真实生物体。"
+    },
+    {
+      "id": "vus",
+      "zh": "临床意义未明变异",
+      "en": "VUS · Variant of Uncertain Significance",
+      "category": "生物与新药",
+      "aliases": ["意义未明变异", "VUS"],
+      "definition": "基因测序在患者 DNA 中检出的罕见突变，但医学界目前尚未积累足够临床或实验证据判断它是无害差异还是致病突变。"
+    },
+    {
+      "id": "car-t",
+      "zh": "嵌合抗原受体 T 细胞疗法",
+      "en": "CAR-T",
+      "category": "生物与新药",
+      "aliases": ["CAR-T"],
+      "definition": "抽取患者自身免疫 T 细胞并在体外基因改造装上肿瘤识别导航后回输体内的活细胞疗法，在血液肿瘤中取得了显著突破。"
+    },
+    {
+      "id": "mrna",
+      "zh": "信使核糖核酸",
+      "en": "mRNA · Messenger RNA",
+      "category": "生物与新药",
+      "aliases": ["mRNA"],
+      "definition": "把细胞核里的 DNA 遗传指令转录并运送出来、指导核糖体合成蛋白质的中间模板分子，也是新冠 mRNA 疫苗和新型核酸药物的载体。"
+    },
+    {
+      "id": "biosecurity",
+      "zh": "生物安全",
+      "en": "Biosecurity",
+      "category": "生物与新药",
+      "aliases": ["生物安全", "biosecurity"],
+      "definition": "防范高致病性病原体、毒素被人工设计或恶意滥用并制定 DNA 合成筛查、模型对齐与防御体系的领域。"
+    },
+    {
+      "id": "high-throughput",
+      "zh": "高通量实验",
+      "en": "High-Throughput Assay / Synthesis",
+      "category": "生物与新药",
+      "aliases": ["高通量", "high-throughput"],
+      "definition": "借助自动化液体工作站、微孔板和并行测序，在一次实验中同时测试数万乃至数百万个分子、细胞或材料样本的技术体系。"
+    },
+    {
+      "id": "wet-lab",
+      "zh": "湿实验",
+      "en": "Wet Lab",
+      "category": "生物与新药",
+      "aliases": ["湿实验室", "湿实验"],
+      "definition": "真实使用化学试剂、移液枪、细胞培养或实验仪器的物理实验环节，对应于纯靠计算机模拟计算的「干实验」（Dry Lab）。"
+    },
+    {
+      "id": "dft",
+      "zh": "密度泛函理论",
+      "en": "DFT · Density Functional Theory",
+      "category": "材料与化学",
+      "aliases": ["密度泛函理论", "DFT"],
+      "definition": "材料设计与量子化学最常用的第一性原理近似计算方法，用电子密度代替极其复杂的多电子波函数来估算分子与晶体能量，精度高但算力开销大。"
+    },
+    {
+      "id": "transition-metal",
+      "zh": "过渡金属配合物",
+      "en": "Transition Metal Complex",
+      "category": "材料与化学",
+      "aliases": ["过渡金属配合物", "过渡金属"],
+      "definition": "以铁、钴、镍、铂等过渡金属原子为中心、周围结合着若干配体的分子结构；由于电子结构复杂且存在多种自旋态，AI 计算难度极大。"
+    },
+    {
+      "id": "quantum-chemistry",
+      "zh": "量子化学",
+      "en": "Quantum Chemistry",
+      "category": "材料与化学",
+      "aliases": ["量子化学", "quantum chemistry", "薛定谔方程"],
+      "definition": "直接用量子力学方程求解分子内部电子分布、化学键断裂与形成规律的理论计算分支，是材料和催化剂建模的底层物理来源。"
+    },
+    {
+      "id": "free-energy",
+      "zh": "自由能",
+      "en": "Free Energy",
+      "category": "材料与化学",
+      "aliases": ["自由能微扰", "自由能"],
+      "definition": "综合了体系能量和热力学熵变的核心物理量，决定了一步化学反应能否自发发生，以及药物与蛋白在体温下结合到底有多稳。"
+    },
+    {
+      "id": "crystal-structure",
+      "zh": "晶体结构",
+      "en": "Crystal Structure",
+      "category": "材料与化学",
+      "aliases": ["晶体结构", "crystal structure"],
+      "definition": "固体材料内部原子在三维空间中按周期性晶格有序排列的方式，直接决定了半导体、电池电极、磁体与合金的宏观物理性质。"
+    },
+    {
+      "id": "superconductor",
+      "zh": "超导与 BCS 理论",
+      "en": "Superconductivity / BCS Theory",
+      "category": "材料与化学",
+      "aliases": ["超导", "BCS"],
+      "definition": "材料在低于特定临界温度时电阻突然降为零且排斥磁场的宏观量子现象；常规低温超导可用 BCS 理论解释，高温超导机制至今仍是未解核心难题。"
+    },
+    {
+      "id": "ising-model",
+      "zh": "伊辛模型",
+      "en": "Ising Model",
+      "category": "材料与化学",
+      "aliases": ["伊辛模型", "Ising model"],
+      "definition": "统计物理和凝聚态物理中最经典的格点自旋极简模型，通过相邻原子向上/向下两种自旋交互来研究磁性与相变临界现象。"
+    },
+    {
+      "id": "self-driving-lab",
+      "zh": "自动驾驶实验室",
+      "en": "Self-Driving Lab",
+      "category": "材料与化学",
+      "aliases": ["自动驾驶实验室", "自动化实验室", "闭环实验"],
+      "definition": "把人工智能实验规划模型、机械臂合成与自动表征仪器连成物理闭环，能够像全天候工厂一样边做实验边迭代模型。"
+    },
+    {
+      "id": "alloy",
+      "zh": "合金材料",
+      "en": "Alloy",
+      "category": "材料与化学",
+      "aliases": ["高温合金", "合金"],
+      "definition": "将两种或多种金属或非金属元素按配方熔炼或粉末冶金结合而成的金属材料，广泛用于航空发动机叶片、核反应堆与芯片制造。"
+    },
+    {
+      "id": "casp",
+      "zh": "CASP 结构预测竞赛",
+      "en": "CASP · Critical Assessment of Structure Prediction",
+      "category": "材料与化学",
+      "aliases": ["CASP"],
+      "definition": "每两年举办一次的国际蛋白质结构预测盲测竞赛；AlphaFold 2 在 2020 年 CASP14 上的压倒性夺冠成为 AI 改变生命科学的转折点。"
+    },
+    {
+      "id": "formal-verification",
+      "zh": "形式化验证",
+      "en": "Formal Verification",
+      "category": "物理与数学",
+      "aliases": ["形式化验证", "formal verification", "形式化证明", "形式化数学"],
+      "definition": "把数学推理或程序逻辑写成计算机可严格逐行检查的形式化代码，由数学证明助手从底层公理出发作零差错验证，能彻底消除 AI 幻觉。"
+    },
+    {
+      "id": "lean",
+      "zh": "Lean 证明助手",
+      "en": "Lean Theorem Prover",
+      "category": "物理与数学",
+      "aliases": ["Lean"],
+      "definition": "当前数学界和可验证 AI 领域最主流的形式化证明语言与编译器，要求每一步逻辑推导都必须通过微小可信内核的严格类型检验。"
+    },
+    {
+      "id": "mathlib",
+      "zh": "Mathlib 数学库",
+      "en": "Mathlib",
+      "category": "物理与数学",
+      "aliases": ["Mathlib"],
+      "definition": "全球数学家与开源社区在 Lean 中协同积累起来的庞大现代形式化数学公共底座，目前已包含超过百万行经机器验证的定理与定义。"
+    },
+    {
+      "id": "autoformalization",
+      "zh": "自动形式化",
+      "en": "Autoformalization",
+      "category": "物理与数学",
+      "aliases": ["自动形式化", "autoformalization"],
+      "definition": "让 AI 自动把人类用自然语言和 LaTeX 写的数学定义与猜想，无偏差地翻译成严格、无歧义的 Lean 等形式化语言规约。"
+    },
+    {
+      "id": "axiom",
+      "zh": "公理",
+      "en": "Axiom",
+      "category": "物理与数学",
+      "aliases": ["公理", "axiom"],
+      "definition": "一个形式化数学体系中被视为无需证明的基本出发前提；在形式化工程验证里，必须严防模型偷改公理或留下未填补漏洞（如 `sorry`）。"
+    },
+    {
+      "id": "qft",
+      "zh": "量子场论与标准模型",
+      "en": "Quantum Field Theory & Standard Model",
+      "category": "物理与数学",
+      "aliases": ["量子场论", "标准模型"],
+      "definition": "把量子力学和狭义相对论结合起来描写微观基本粒子与相互作用（标准模型）的基础物理理论框架。"
+    },
+    {
+      "id": "scattering-amplitude",
+      "zh": "散射振幅",
+      "en": "Scattering Amplitude",
+      "category": "物理与数学",
+      "aliases": ["单负散射振幅", "散射振幅", "scattering amplitude"],
+      "definition": "量子场论中用来计算基本粒子碰撞后以特定状态飞出概率的核心物理复函数，在大型强子对撞机实验中对应直接可测信号。"
+    },
+    {
+      "id": "gluon",
+      "zh": "胶子",
+      "en": "Gluon",
+      "category": "物理与数学",
+      "aliases": ["胶子", "gluon"],
+      "definition": "在量子色动力学（QCD）中负责传递强核力的无质量基本粒子，把夸克紧紧粘合在一起构成质子和中子。"
+    },
+    {
+      "id": "strong-nuclear-force",
+      "zh": "强核力",
+      "en": "Strong Nuclear Force",
+      "category": "物理与数学",
+      "aliases": ["强核力", "strong nuclear force"],
+      "definition": "自然界四种基本相互作用中最强大的一种，克服质子之间的电磁排斥把原子核牢牢束缚在一起，作用程只在原子核尺度以内。"
+    },
+    {
+      "id": "graviton",
+      "zh": "引力子",
+      "en": "Graviton",
+      "category": "物理与数学",
+      "aliases": ["引力子", "graviton"],
+      "definition": "理论物理中假想负责传递引力相互作用的基本量子粒子；虽然至今未能直接探测，但其数学结构与胶子振幅存在深刻对偶关联。"
+    },
+    {
+      "id": "feynman-diagram",
+      "zh": "费曼图",
+      "en": "Feynman Diagram",
+      "category": "物理与数学",
+      "aliases": ["费曼图", "Feynman diagram"],
+      "definition": "由理查德·费曼发明的直观图形微扰计算工具，用线条和顶点画出粒子碰撞时所有可能经历的中间路径并求和。"
+    },
+    {
+      "id": "parke-taylor",
+      "zh": "帕克-泰勒公式",
+      "en": "Parke-Taylor Formula",
+      "category": "物理与数学",
+      "aliases": ["帕克-泰勒公式", "Parke-Taylor formula"],
+      "definition": "1986 年发现的著名解析公式：成千上万张原本极端繁杂的胶子费曼图相消之后，最大螺旋度违背树图散射振幅居然能坍缩成半行纸的超简洁公式。"
+    },
+    {
+      "id": "helicity",
+      "zh": "螺旋度",
+      "en": "Helicity",
+      "category": "物理与数学",
+      "aliases": ["正螺旋度", "负螺旋度", "螺旋度", "positive helicity"],
+      "definition": "描写无质量粒子自旋方向与飞行方向是同向右旋（正螺旋度）还是反向左旋（负螺旋度）的基本量子标签。"
+    },
+    {
+      "id": "tree-level",
+      "zh": "树图振幅",
+      "en": "Tree-Level Amplitude",
+      "category": "物理与数学",
+      "aliases": ["树图"],
+      "definition": "粒子散射过程中不包含封闭量子虚粒子环路（「圈图」）的最领先阶相互作用路径之和，图形上类似无回路的树状分叉。"
+    },
+    {
+      "id": "collinear",
+      "zh": "共线态与特殊运动学",
+      "en": "Collinear Kinematics",
+      "category": "物理与数学",
+      "aliases": ["共线", "collinear"],
+      "definition": "当粒子的动量或方向沿着同一条直线排列时触发的特殊几何区域；教科书经典定理常假设处于一般运动学而忽略了共线等边界漏洞。"
+    },
+    {
+      "id": "lhc",
+      "zh": "大型强子对撞机",
+      "en": "LHC · Large Hadron Collider",
+      "category": "物理与数学",
+      "aliases": ["LHC"],
+      "definition": "位于欧洲核子研究中心（CERN）的全球最大高能粒子加速器，每秒产生海量夸克与胶子散射事件，需要极精确的振幅公式来做理论背景预测。"
+    },
+    {
+      "id": "pde",
+      "zh": "偏微分方程",
+      "en": "PDE · Partial Differential Equation",
+      "category": "物理与数学",
+      "aliases": ["偏微分方程", "PDE"],
+      "definition": "描述物理量（如温度、风速、电磁场或波函数）在时间和多维空间里连续变化规律的方程组，是流体、气象与工程仿真的核心数学语言。"
+    },
+    {
+      "id": "era5",
+      "zh": "ERA5 全球气候再分析数据集",
+      "en": "ERA5 Reanalysis",
+      "category": "物理与数学",
+      "aliases": ["ERA5", "再分析数据", "ERA"],
+      "definition": "欧洲中期天气预报中心（ECMWF）发布的经典高分辨率全球逐小时历史气象重建数据集，已经成为 FourCastNet、GraphCast 等 AI 天气大模型共同的训练试金石。"
+    },
+    {
+      "id": "tokamak",
+      "zh": "托卡马克与受控核聚变",
+      "en": "Tokamak / Nuclear Fusion",
+      "category": "科学智能体与硬件",
+      "aliases": ["托卡马克", "等离子体", "核聚变"],
+      "definition": "利用强大环形磁场约束上亿度高温电离气体（「等离子体」）以试图实现可控核聚变发电的装置，AI 强化学习已被用于毫秒级稳定控制其磁场线圈。"
+    },
+    {
+      "id": "electronic-warfare",
+      "zh": "电子战干扰",
+      "en": "EW · Electronic Warfare",
+      "category": "科学智能体与硬件",
+      "aliases": ["电子战", "electronic warfare"],
+      "definition": "在现代战场上通过发射高功率电磁噪声压制敌方雷达、GPS 卫星导航或无人机遥控无线电链路的对抗手段。"
+    },
+    {
+      "id": "radio-shadow",
+      "zh": "无线电阴影",
+      "en": "Radio Shadow / Radio Horizon",
+      "category": "科学智能体与硬件",
+      "aliases": ["无线电阴影", "radio shadow"],
+      "definition": "低空飞行器接近地面目标前，由于地球曲率、山丘或建筑遮挡导致直连无线电信号剧烈衰减甚至失联的物理盲区。"
+    },
+    {
+      "id": "fiber-optic-drone",
+      "zh": "光纤制导无人机",
+      "en": "Fiber-Optic Drone",
+      "category": "科学智能体与硬件",
+      "aliases": ["光纤无人机", "fiber-optic drone"],
+      "definition": "飞行途中从机尾持续放出极细玻璃光纤与后方飞手保持有线直连的无人机，对无线电电磁压制完全免疫，但受线轴重量和航线物理拉扯限制。"
+    },
+    {
+      "id": "fpv",
+      "zh": "第一人称视角无人机",
+      "en": "FPV · First-Person View",
+      "category": "科学智能体与硬件",
+      "aliases": ["FPV", "第一人称视角"],
+      "definition": "飞手佩戴头显实时观看机头摄像头传回的画面进行高速手控飞行的低成本小型无人机，在现代低成本无人对抗中占据核心数量。"
+    },
+    {
+      "id": "terminal-guidance",
+      "zh": "末段自主制导",
+      "en": "Terminal Guidance",
+      "category": "科学智能体与硬件",
+      "aliases": ["末段制导", "terminal guidance"],
+      "definition": "飞手在远处锁定目标框后，无人机利用机载芯片与视觉识别在最后几百米失联区段完全自主修正航线并飞向目标的技术模块。"
+    },
+    {
+      "id": "interceptor-drone",
+      "zh": "拦截无人机",
+      "en": "Interceptor Drone",
+      "category": "科学智能体与硬件",
+      "aliases": ["拦截无人机", "interceptor drone"],
+      "definition": "专门用来在空中低成本追击、碰撞并摧毁敌方自杀式无人机的专用防空无人机，用来替代成本高出数十倍的传统防空导弹。"
+    },
+    {
+      "id": "swarm",
+      "zh": "无人机蜂群",
+      "en": "Drone Swarm",
+      "category": "科学智能体与硬件",
+      "aliases": ["蜂群编队", "蜂群", "swarm"],
+      "definition": "多架具备局域自主感知与协同决策能力的无人机以极少人类操作员监督形成集群分工，协同侦察、诱导火力并完成高强度饱和任务。"
+    }
+  ]
+}

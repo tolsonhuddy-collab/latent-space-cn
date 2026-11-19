@@ -136,6 +136,42 @@ class TestSiteBuild(unittest.TestCase):
             self.assertIsNotNone(outline)
             self.assertEqual(outline.attrib.get("xmlUrl"), f"{base_url}feed.xml")
 
+    def test_glossary_and_related_articles(self) -> None:
+        import re
+
+        glossary = json.loads((ROOT / "site" / "glossary.json").read_text(encoding="utf-8"))["terms"]
+        self.assertGreaterEqual(len(glossary), 75)
+        tids = [t["id"] for t in glossary]
+        self.assertEqual(len(tids), len(set(tids)))
+        for t in glossary:
+            self.assertTrue(t.get("zh") and t.get("en") and t.get("definition") and t.get("aliases"), t["id"])
+
+        catalog = json.loads((ROOT / "catalog" / "episodes.json").read_text(encoding="utf-8"))
+        ep_ids = [ep["id"] for ep in catalog["episodes"]]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "dist"
+            build_site.build_site(mode="published", out_dir=out)
+
+            index_html = (out / "index.html").read_text(encoding="utf-8")
+            self.assertNotIn("{{", index_html)
+
+            for ep_id in ep_ids:
+                page = (out / "episodes" / f"{ep_id}.html").read_text(encoding="utf-8")
+                self.assertNotIn("{{", page, ep_id)
+                self.assertIn('id="article-glossary"', page, ep_id)
+                self.assertIn('id="article-glossary-data"', page, ep_id)
+                self.assertIn('class="related-section"', page, ep_id)
+                self.assertIn('id="term-popover"', page, ep_id)
+                self.assertGreaterEqual(page.count('class="term-ref"'), 8, ep_id)
+                # Ensure no term-ref span sits inside any heading or anchor tag
+                for block in re.findall(r"<h[1-6][^>]*>.*?</h[1-6]>|<a\b[^>]*>.*?</a>", page, flags=re.S):
+                    self.assertNotIn('class="term-ref"', block, f"{ep_id}: term-ref leaked inside heading/link")
+
+            for feed_name in ("feed.xml", "rss.xml"):
+                feed_txt = (out / feed_name).read_text(encoding="utf-8")
+                self.assertNotIn('class="term-ref"', feed_txt, feed_name)
+
     def test_cover_integrity(self) -> None:
         import hashlib
         catalog = json.loads((ROOT / "catalog" / "episodes.json").read_text(encoding="utf-8"))

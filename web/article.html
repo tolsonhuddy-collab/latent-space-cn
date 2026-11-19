@@ -29,7 +29,7 @@
 
   <header class="article-topbar">
     <div class="container article-topbar-inner">
-      <a class="topbar-btn" href="{{BASE_PATH}}index.html">← 节目目录 · 中文精读</a>
+      <a class="topbar-btn article-back-btn" href="{{BASE_PATH}}index.html"><span class="back-full">← 节目目录 · 中文精读</span><span class="back-short">← 目录</span></a>
       <a class="article-wordmark" href="{{BASE_PATH}}index.html">{{SITE_TITLE}}</a>
       <div class="article-controls">
         <a id="rss-open" class="topbar-btn topbar-rss" href="{{BASE_PATH}}feed.xml" title="RSS / Atom 全文订阅">
@@ -61,7 +61,7 @@
           <h1 class="article-title">{{TITLE_ZH}}</h1>
           <p class="article-en">{{TITLE_EN}}</p>
           <div class="article-meta">{{META_TEXT}}</div>
-          <p class="editor-note-inline">依据英文原稿编译，编辑与来源说明见<a href="#editor-sources">文末</a>。</p>
+          <p class="editor-note-inline">依据英文原稿编译；文中<span class="term-sample">虚线术语</span>可悬停或点击查看中英注释，完整<a href="#article-glossary">术语表</a>与<a href="#editor-sources">来源说明</a>见文末。</p>
         </header>
 
         {{COVER_HTML}}
@@ -79,10 +79,12 @@
 
         <footer class="article-footer">
           <div class="end-mark" aria-hidden="true">■</div>
+          {{GLOSSARY_BOX_HTML}}
           <details id="editor-sources" class="source-note-box">
             <summary>编辑与来源说明</summary>
             <p>{{SOURCE_NOTE}}</p>
           </details>
+          {{RELATED_ARTICLES_HTML}}
           <nav class="article-nav" aria-label="上下篇导航">
             <div>{{PREV_LINK_HTML}}</div>
             <div>{{NEXT_LINK_HTML}}</div>
@@ -125,6 +127,8 @@
     </div>
   </div>
 
+  {{GLOSSARY_JSON_SCRIPT}}
+  <div id="term-popover" class="term-popover" role="tooltip" aria-hidden="true"></div>
   <script src="{{BASE_PATH}}app.js"></script>
 </body>
 </html>

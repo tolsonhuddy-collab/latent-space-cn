@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 WEB_DIR = ROOT / "web"
 CATALOG_PATH = ROOT / "catalog" / "episodes.json"
 HOMEPAGE_PATH = ROOT / "site" / "homepage.json"
+GLOSSARY_PATH = ROOT / "site" / "glossary.json"
 SITE_ZH_DIR = ROOT / "site" / "zh"
 PRIVATE_ARTICLES_DIR = ROOT / "private" / "articles"
 PRIVATE_META_DIR = ROOT / "private" / "metadata"
@@ -584,6 +585,160 @@ def build_opml(site_title: str, base_url: str) -> str:
     )
 
 
+def load_glossary() -> List[dict]:
+    data = load_json(GLOSSARY_PATH, {"terms": []})
+    return data.get("terms") or []
+
+
+def annotate_glossary_terms(body_html: str, glossary: List[dict]) -> Tuple[str, List[dict]]:
+    if not glossary or not body_html:
+        return body_html, []
+
+    alias_pairs: List[Tuple[str, dict]] = []
+    for entry in glossary:
+        for alias in entry.get("aliases") or []:
+            escaped = html.escape(alias, quote=False)
+            if escaped:
+                alias_pairs.append((escaped, entry))
+    alias_pairs.sort(key=lambda pair: len(pair[0]), reverse=True)
+
+    alias_map: Dict[str, dict] = {}
+    regex_parts: List[str] = []
+    for escaped, entry in alias_pairs:
+        if escaped in alias_map:
+            continue
+        alias_map[escaped] = entry
+        pat = re.escape(escaped)
+        if re.match(r"^[A-Za-z0-9]", escaped):
+            pat = r"(?<![A-Za-z0-9\-])" + pat
+        if re.search(r"[A-Za-z0-9]$", escaped):
+            pat = pat + r"(?![A-Za-z0-9\-])"
+        regex_parts.append(pat)
+
+    if not regex_parts:
+        return body_html, []
+
+    term_re = re.compile("|".join(regex_parts))
+    tokens = re.split(r"(<[^>]+>)", body_html)
+    seen_ids: set[str] = set()
+    matched_entries: List[dict] = []
+    in_heading = 0
+    in_link = 0
+
+    def _replace_term(m: re.Match[str]) -> str:
+        surface = m.group(0)
+        entry = alias_map.get(surface)
+        if not entry:
+            return surface
+        tid = entry["id"]
+        if tid in seen_ids:
+            return surface
+        seen_ids.add(tid)
+        matched_entries.append(entry)
+        return (
+            f'<span class="term-ref" tabindex="0" role="button" '
+            f'data-term="{html.escape(tid, quote=True)}">{surface}</span>'
+        )
+
+    out_tokens: List[str] = []
+    for tok in tokens:
+        if not tok:
+            continue
+        if tok.startswith("<") and tok.endswith(">"):
+            tok_low = tok.lower()
+            if re.match(r"^<h[1-6](?:[\s>]|$)", tok_low):
+                in_heading += 1
+            elif re.match(r"^</h[1-6](?:[\s>]|$)", tok_low):
+                in_heading = max(0, in_heading - 1)
+            elif re.match(r"^<a(?:[\s>]|$)", tok_low):
+                in_link += 1
+            elif re.match(r"^</a(?:[\s>]|$)", tok_low):
+                in_link = max(0, in_link - 1)
+            out_tokens.append(tok)
+        elif in_heading == 0 and in_link == 0:
+            out_tokens.append(term_re.sub(_replace_term, tok))
+        else:
+            out_tokens.append(tok)
+
+    return "".join(out_tokens), matched_entries
+
+
+def render_glossary_section(matched_entries: List[dict]) -> Tuple[str, str]:
+    if not matched_entries:
+        return "", ""
+    items_html: List[str] = []
+    data_map: Dict[str, Dict[str, str]] = {}
+    for entry in matched_entries:
+        tid = entry["id"]
+        zh = html.escape(entry.get("zh") or "")
+        en = html.escape(entry.get("en") or "")
+        defn = html.escape(entry.get("definition") or "")
+        items_html.append(
+            f'<div class="glossary-item">'
+            f'<dt><span class="glossary-zh">{zh}</span><span class="glossary-en">{en}</span></dt>'
+            f"<dd>{defn}</dd>"
+            f"</div>"
+        )
+        data_map[tid] = {
+            "zh": entry.get("zh") or "",
+            "en": entry.get("en") or "",
+            "category": entry.get("category") or "",
+            "definition": entry.get("definition") or "",
+        }
+    box_html = (
+        f'<details id="article-glossary" class="source-note-box glossary-box">'
+        f"<summary>本篇专业术语注释（共 {len(matched_entries)} 条 · 点击展开）</summary>"
+        f'<dl class="glossary-list">{"".join(items_html)}</dl>'
+        f"</details>"
+    )
+    safe_json = json.dumps(data_map, ensure_ascii=False).replace("</", "<\\/")
+    script_html = f'<script id="article-glossary-data" type="application/json">{safe_json}</script>'
+    return box_html, script_html
+
+
+def render_related_articles(
+    current_meta: dict,
+    published_ordered: List[Tuple[dict, str, str]],
+    articles: Dict[str, Tuple[dict, str]],
+) -> str:
+    cat = infer_category(current_meta)
+    others = [
+        m for m, _, _ in published_ordered
+        if m["id"] != current_meta["id"] and infer_category(m) == cat
+    ]
+    if not others:
+        others = [m for m, _, _ in published_ordered if m["id"] != current_meta["id"]]
+    others.sort(key=lambda m: (m.get("published_at") or "", m.get("number") or ""), reverse=True)
+    picks = others[:3]
+    if not picks:
+        return ""
+    cards_html: List[str] = []
+    for m in picks:
+        ep_id = m["id"]
+        num = html.escape(m.get("number") or "")
+        title_zh = html.escape(m.get("title_zh") or m.get("title_en") or ep_id)
+        guests = ", ".join(m.get("guests") or [])
+        org = m.get("org") or ""
+        guests_org = html.escape(" · ".join(p for p in [guests, org] if p))
+        md_text = articles[ep_id][1] if ep_id in articles else ""
+        _, read_mins, words_label = count_cjk_and_read_mins(md_text)
+        meta_parts = [p for p in [num, words_label, f"阅读约 {read_mins} 分钟" if read_mins else ""] if p]
+        meta_line = " · ".join(html.escape(p) for p in meta_parts)
+        cards_html.append(
+            f'<a class="related-card" href="{html.escape(ep_id, quote=True)}.html">'
+            f'<div class="related-meta">{meta_line}</div>'
+            f'<div class="related-title">{title_zh} ↗</div>'
+            f'<div class="related-guests">{guests_org}</div>'
+            f"</a>"
+        )
+    return (
+        f'<section class="related-section" aria-label="同领域延伸阅读">'
+        f'<h2 class="related-heading">同领域延伸阅读 · {html.escape(cat)}</h2>'
+        f'<div class="related-grid">{"".join(cards_html)}</div>'
+        f"</section>"
+    )
+
+
 def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
     if mode == "demo":
         homepage, episodes, articles = build_demo_data()
@@ -649,6 +804,7 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
             published_ordered.append((meta, body_html, toc_html))
 
     article_tpl = (WEB_DIR / "article.html").read_text(encoding="utf-8")
+    glossary = load_glossary()
     for idx, (meta, body_html, toc_html) in enumerate(published_ordered):
         ep_id = meta["id"]
         num = meta.get("number") or ""
@@ -694,6 +850,10 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
                 f'alt="{html.escape(title_en, quote=True)}" /></figure>'
             )
 
+        annotated_body_html, matched_entries = annotate_glossary_terms(body_html, glossary)
+        glossary_box_html, glossary_script_html = render_glossary_section(matched_entries)
+        related_html = render_related_articles(meta, published_ordered, articles)
+
         page_html = (
             article_tpl.replace("{{SITE_TITLE}}", html.escape(site_title))
             .replace("{{BASE_PATH}}", "../")
@@ -703,7 +863,10 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
             .replace("{{META_TEXT}}", meta_text)
             .replace("{{SOURCE_NOTE}}", html.escape(source_note))
             .replace("{{TOC_HTML}}", toc_html)
-            .replace("{{ARTICLE_BODY_HTML}}", body_html)
+            .replace("{{ARTICLE_BODY_HTML}}", annotated_body_html)
+            .replace("{{GLOSSARY_BOX_HTML}}", glossary_box_html)
+            .replace("{{GLOSSARY_JSON_SCRIPT}}", glossary_script_html)
+            .replace("{{RELATED_ARTICLES_HTML}}", related_html)
             .replace("{{PREV_LINK_HTML}}", prev_html)
             .replace("{{NEXT_LINK_HTML}}", next_html)
             .replace("{{OG_IMAGE_META}}", og_meta)

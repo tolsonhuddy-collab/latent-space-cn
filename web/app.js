@@ -238,4 +238,148 @@
       }
     }, { passive: true });
   }
+
+  // Interactive bilingual glossary popover
+  var glossaryDataEl = document.getElementById("article-glossary-data");
+  var popoverEl = document.getElementById("term-popover");
+  if (glossaryDataEl && popoverEl) {
+    var glossaryMap = {};
+    try {
+      glossaryMap = JSON.parse(glossaryDataEl.textContent || "{}");
+    } catch (_) {
+      glossaryMap = {};
+    }
+
+    var activeTermEl = null;
+    var hideTimer = null;
+    var openScrollY = 0;
+
+    function clearHideTimer() {
+      if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+      }
+    }
+
+    function hidePopover() {
+      clearHideTimer();
+      popoverEl.classList.remove("is-open");
+      popoverEl.setAttribute("aria-hidden", "true");
+      if (activeTermEl) {
+        activeTermEl.classList.remove("is-active");
+        activeTermEl = null;
+      }
+    }
+
+    function showPopover(target) {
+      var tid = target.getAttribute("data-term");
+      var item = tid ? glossaryMap[tid] : null;
+      if (!item) return;
+
+      clearHideTimer();
+      if (activeTermEl && activeTermEl !== target) {
+        activeTermEl.classList.remove("is-active");
+      }
+      activeTermEl = target;
+      target.classList.add("is-active");
+
+      while (popoverEl.firstChild) {
+        popoverEl.removeChild(popoverEl.firstChild);
+      }
+
+      var head = document.createElement("div");
+      head.className = "term-pop-head";
+      var zhEl = document.createElement("span");
+      zhEl.className = "term-pop-zh";
+      zhEl.textContent = item.zh || "";
+      var enEl = document.createElement("span");
+      enEl.className = "term-pop-en";
+      enEl.textContent = item.en || "";
+      head.appendChild(zhEl);
+      if (item.en) head.appendChild(enEl);
+
+      var defEl = document.createElement("p");
+      defEl.className = "term-pop-def";
+      defEl.textContent = item.definition || "";
+
+      popoverEl.appendChild(head);
+      popoverEl.appendChild(defEl);
+
+      popoverEl.style.left = "-9999px";
+      popoverEl.style.top = "0px";
+      popoverEl.classList.add("is-open");
+      popoverEl.setAttribute("aria-hidden", "false");
+
+      var rect = target.getBoundingClientRect();
+      var popW = popoverEl.offsetWidth || 320;
+      var popH = popoverEl.offsetHeight || 120;
+      var left = Math.max(16, Math.min(window.innerWidth - popW - 16, rect.left));
+      var top = rect.bottom + 8;
+      if (top + popH + 16 > window.innerHeight && rect.top - popH - 8 >= 12) {
+        top = rect.top - popH - 8;
+      }
+      popoverEl.style.left = Math.round(left) + "px";
+      popoverEl.style.top = Math.round(top) + "px";
+      openScrollY = window.scrollY;
+    }
+
+    var termEls = Array.prototype.slice.call(document.querySelectorAll(".term-ref"));
+    termEls.forEach(function (el) {
+      el.addEventListener("mouseenter", function () {
+        showPopover(el);
+      });
+      el.addEventListener("mouseleave", function () {
+        clearHideTimer();
+        hideTimer = setTimeout(hidePopover, 140);
+      });
+      el.addEventListener("focus", function () {
+        showPopover(el);
+      });
+      el.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (activeTermEl === el && popoverEl.classList.contains("is-open")) {
+          hidePopover();
+        } else {
+          showPopover(el);
+        }
+      });
+      el.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          if (activeTermEl === el && popoverEl.classList.contains("is-open")) {
+            hidePopover();
+          } else {
+            showPopover(el);
+          }
+        }
+      });
+    });
+
+    popoverEl.addEventListener("mouseenter", clearHideTimer);
+    popoverEl.addEventListener("mouseleave", function () {
+      clearHideTimer();
+      hideTimer = setTimeout(hidePopover, 140);
+    });
+    popoverEl.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+
+    document.addEventListener("click", function () {
+      hidePopover();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        hidePopover();
+      }
+    });
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (popoverEl.classList.contains("is-open") && Math.abs(window.scrollY - openScrollY) > 40) {
+          hidePopover();
+        }
+      },
+      { passive: true }
+    );
+  }
 })();
