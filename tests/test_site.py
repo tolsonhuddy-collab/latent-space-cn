@@ -32,14 +32,16 @@ class TestSiteBuild(unittest.TestCase):
             self.assertTrue((out / "episodes" / "002-demo.html").exists())
             html = (out / "index.html").read_text(encoding="utf-8")
             self.assertIn("Latent Space 中文精读", html)
-            self.assertIn("3 期节目 · 2 期已定稿", html)
+            self.assertIn("3 期节目 · 1 期待精读", html)
+            self.assertNotIn("已定稿", html)
 
     def test_published_build(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "dist"
             build_site.build_site(mode="published", out_dir=out)
             index_html = (out / "index.html").read_text(encoding="utf-8")
-            self.assertIn("20 期节目 · 20 期已定稿", index_html)
+            self.assertIn("20 期节目", index_html)
+            self.assertNotIn("已定稿", index_html)
             for ep_id in (
                 "001-leash-bio",
                 "002-kohli-protein",

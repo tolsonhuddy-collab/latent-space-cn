@@ -315,10 +315,10 @@ def render_episode_cards(episodes: List[dict], articles: Dict[str, Tuple[dict, s
         dur = merged.get("duration_minutes")
         source_url = merged.get("source_url") or ""
 
-        status_label = "已定稿" if is_pub else "待精读"
+        status_label = "" if is_pub else "待精读"
         article_href = f"episodes/{html.escape(ep_id, quote=True)}.html"
 
-        search_blob = " ".join([num, title_zh, title_en, guests, org, status_label])
+        search_blob = " ".join(p for p in [num, title_zh, title_en, guests, org, status_label] if p)
         guests_line = " · ".join(p for p in [guests, org] if p)
 
         meta_parts = [p for p in [date_zh, f"约 {dur} 分钟" if dur else ""] if p]
@@ -339,7 +339,6 @@ def render_episode_cards(episodes: List[dict], articles: Dict[str, Tuple[dict, s
                 f'<a class="{thumb_cls}" href="{article_href}">'
                 f"{img_html}"
                 f'<span class="card-num">{num}</span>'
-                f'<span class="card-badge">{status_label}</span>'
                 f"</a>"
             )
             title_html = f'<h3 class="card-title"><a href="{article_href}">{html.escape(title_zh or title_en)} ↗</a></h3>'
@@ -357,7 +356,7 @@ def render_episode_cards(episodes: List[dict], articles: Dict[str, Tuple[dict, s
         cards.append(
             f'<article class="{card_class}" data-search="{html.escape(search_blob, quote=True)}">'
             f"{thumb_html}"
-            f'<div class="card-status-line">{num} · {status_label}</div>'
+            f'<div class="card-status-line">{num}{" · " + status_label if status_label else ""}</div>'
             f"{title_html}"
             f'<p class="card-en">{html.escape(title_en)}</p>'
             f'<p class="card-guests">{html.escape(guests_line)}</p>'
@@ -517,7 +516,7 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
     site_subtitle = homepage.get("site_subtitle") or "来自硅谷，AI for Science 最前沿的讨论"
     total_count = len(episodes)
     pub_count = sum(1 for ep in episodes if ep["id"] in articles)
-    stats_text = f"{total_count} 期节目 · {pub_count} 期已定稿"
+    stats_text = f"{total_count} 期节目" if pub_count == total_count else f"{total_count} 期节目 · {total_count - pub_count} 期待精读"
 
     footer_lines = homepage.get("footer_lines") or []
     footer_lines_html = "\n".join(f"<p>{html.escape(line)}</p>" for line in footer_lines)
