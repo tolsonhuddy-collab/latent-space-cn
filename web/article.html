@@ -8,6 +8,8 @@
   <meta property="og:title" content="{{TITLE_ZH}}" />
   <meta property="og:description" content="{{TITLE_EN}}" />
   {{OG_IMAGE_META}}
+  <link rel="alternate" type="application/atom+xml" title="{{SITE_TITLE}} Atom" href="{{BASE_PATH}}feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="{{SITE_TITLE}} RSS" href="{{BASE_PATH}}rss.xml" />
   <link rel="stylesheet" href="{{BASE_PATH}}style.css" />
   <script>
     (function () {
@@ -30,7 +32,14 @@
       <a class="topbar-btn" href="{{BASE_PATH}}index.html">← 节目目录 · 中文精读</a>
       <a class="article-wordmark" href="{{BASE_PATH}}index.html">{{SITE_TITLE}}</a>
       <div class="article-controls">
-        <a class="topbar-btn" href="{{BASE_PATH}}feed.xml">RSS 订阅</a>
+        <a id="rss-open" class="topbar-btn topbar-rss" href="{{BASE_PATH}}feed.xml" title="RSS / Atom 全文订阅">
+          <svg class="rss-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9"></path>
+            <path d="M4 4a16 16 0 0 1 16 16"></path>
+            <circle cx="5" cy="19" r="1" fill="currentColor"></circle>
+          </svg>
+          <span>RSS 订阅</span>
+        </a>
         <button id="font-dec" class="font-btn" type="button" aria-label="减小字号">A−</button>
         <span id="font-size-val" class="font-size-val">20</span>
         <button id="font-inc" class="font-btn" type="button" aria-label="增大字号">A＋</button>
@@ -94,6 +103,25 @@
     <div class="container reading-status-inner">
       <span id="reading-pct">阅读进度 0%</span>
       <a href="#top">回到页首 ↑</a>
+    </div>
+  </div>
+
+  <div id="rss-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="rss-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="rss-modal-title">RSS 全文订阅</h2>
+        <button id="rss-close" class="topbar-btn" type="button" aria-label="关闭">关闭 ✕</button>
+      </div>
+      <div class="modal-body">
+        <p>已收录全部 <strong>{{PUBLISHED_COUNT}} 篇</strong>中文精读全文，后续更新自动推送。复制下方地址到任意阅读器（Reeder、NetNewsWire、Folo、Inoreader、Feedly、Obsidian 等）即可订阅：</p>
+        <div class="rss-url-box">
+          <input id="rss-feed-url" class="rss-url-input" type="text" readonly value="{{BASE_PATH}}feed.xml" aria-label="RSS 订阅源地址" />
+          <button id="rss-copy-btn" class="rss-copy-btn" type="button">复制地址</button>
+        </div>
+        <p class="rss-links-row">
+          直接打开：<a href="{{BASE_PATH}}feed.xml" target="_blank" rel="noopener noreferrer">Atom 全文源 (feed.xml) ↗</a> · <a href="{{BASE_PATH}}rss.xml" target="_blank" rel="noopener noreferrer">RSS 2.0 源 (rss.xml) ↗</a> · <a href="{{BASE_PATH}}latent-space-rss.opml" download>下载 OPML</a>
+        </p>
+      </div>
     </div>
   </div>
 

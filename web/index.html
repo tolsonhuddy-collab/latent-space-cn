@@ -6,6 +6,7 @@
   <title>{{SITE_TITLE}}</title>
   <meta name="description" content="{{SITE_SUBTITLE}}" />
   <link rel="alternate" type="application/atom+xml" title="{{SITE_TITLE}} Atom" href="{{BASE_PATH}}feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="{{SITE_TITLE}} RSS" href="{{BASE_PATH}}rss.xml" />
   <link rel="stylesheet" href="{{BASE_PATH}}style.css" />
   <script>
     (function () {
@@ -29,6 +30,14 @@
         />
       </div>
       <div class="topbar-actions">
+        <a id="rss-open" class="topbar-btn topbar-rss" href="{{BASE_PATH}}feed.xml" title="RSS / Atom 全文订阅">
+          <svg class="rss-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9"></path>
+            <path d="M4 4a16 16 0 0 1 16 16"></path>
+            <circle cx="5" cy="19" r="1" fill="currentColor"></circle>
+          </svg>
+          <span>RSS 订阅</span>
+        </a>
         <button id="guide-open" class="topbar-btn" type="button">使用说明</button>
         <button id="theme-toggle" class="topbar-btn" type="button" aria-label="切换明暗主题" title="切换明暗主题">
           <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -78,7 +87,7 @@
         <div id="disclaimer-panel" class="accordion-panel">
           <p>本站为非官方中文精读归档，主要整理 Latent Space（含 Science 子频道）公开节目的英文逐字稿，经结构重排、中文改写与编辑校订后形成长文。</p>
           <p>文中涉及的模型指标、实验数据与机构观点均以原节目逐字稿为准，未逐一核验原始论文，不构成科研、医疗或投资建议。如需完整原声与官方资料，请访问 Latent Space 原节目页。</p>
-          <p>订阅：<a href="{{BASE_PATH}}feed.xml">Atom 全文订阅</a> · <a href="{{BASE_PATH}}podcasts/latent-space/feed.xml">播客 RSS</a> · <a href="{{BASE_PATH}}latent-space-rss.opml">OPML</a></p>
+          <p>订阅：<a href="{{BASE_PATH}}feed.xml">Atom 全文订阅</a> · <a href="{{BASE_PATH}}rss.xml">RSS 2.0</a> · <a href="{{BASE_PATH}}podcasts/latent-space/feed.xml">播客 RSS</a> · <a href="{{BASE_PATH}}latent-space-rss.opml">OPML</a></p>
         </div>
       </div>
     </div>
@@ -96,8 +105,27 @@
           <li><strong>检索：</strong>顶部搜索框支持按期号（如 <code>004</code>）、中文标题、英文原标题、嘉宾或机构名称实时筛选。</li>
           <li><strong>状态：</strong>标有「已定稿」的节目可点击标题或封面进入全文精读；标有「待精读」的节目暂列目录并保留原节目链接。</li>
           <li><strong>阅读：</strong>文章页支持调节字号（<code>A-</code> / <code>A+</code>）、切换明暗主题、目录跳转与阅读进度指示。</li>
-          <li><strong>订阅：</strong>页脚提供 Atom / RSS 与 OPML，可导入 Obsidian RSS Dashboard 或常用阅读器。</li>
+          <li><strong>订阅：</strong>点击顶部「RSS 订阅」可一键复制 Atom 全文订阅地址，或直接打开 RSS 2.0 源与下载 OPML 导入常用阅读器。</li>
         </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="rss-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="rss-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="rss-modal-title">RSS 全文订阅</h2>
+        <button id="rss-close" class="topbar-btn" type="button" aria-label="关闭">关闭 ✕</button>
+      </div>
+      <div class="modal-body">
+        <p>已收录全部 <strong>{{PUBLISHED_COUNT}} 篇</strong>中文精读全文，后续更新自动推送。复制下方地址到任意阅读器（Reeder、NetNewsWire、Folo、Inoreader、Feedly、Obsidian 等）即可订阅：</p>
+        <div class="rss-url-box">
+          <input id="rss-feed-url" class="rss-url-input" type="text" readonly value="{{BASE_PATH}}feed.xml" aria-label="RSS 订阅源地址" />
+          <button id="rss-copy-btn" class="rss-copy-btn" type="button">复制地址</button>
+        </div>
+        <p class="rss-links-row">
+          直接打开：<a href="{{BASE_PATH}}feed.xml" target="_blank" rel="noopener noreferrer">Atom 全文源 (feed.xml) ↗</a> · <a href="{{BASE_PATH}}rss.xml" target="_blank" rel="noopener noreferrer">RSS 2.0 源 (rss.xml) ↗</a> · <a href="{{BASE_PATH}}latent-space-rss.opml" download>下载 OPML</a>
+        </p>
       </div>
     </div>
   </div>

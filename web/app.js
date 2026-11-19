@@ -39,6 +39,66 @@
     });
   }
 
+  // RSS subscription modal
+  var rssOpen = document.getElementById("rss-open");
+  var rssClose = document.getElementById("rss-close");
+  var rssModal = document.getElementById("rss-modal");
+  var rssInput = document.getElementById("rss-feed-url");
+  var rssCopyBtn = document.getElementById("rss-copy-btn");
+  if (rssOpen && rssModal) {
+    if (rssInput) {
+      try {
+        rssInput.value = new URL(rssOpen.getAttribute("href") || "feed.xml", window.location.href).href;
+      } catch (_) {}
+    }
+    rssOpen.addEventListener("click", function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
+        return;
+      }
+      e.preventDefault();
+      rssModal.classList.add("is-open");
+    });
+    if (rssClose) {
+      rssClose.addEventListener("click", function () {
+        rssModal.classList.remove("is-open");
+      });
+    }
+    rssModal.addEventListener("click", function (e) {
+      if (e.target === rssModal) {
+        rssModal.classList.remove("is-open");
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        rssModal.classList.remove("is-open");
+      }
+    });
+  }
+  if (rssCopyBtn && rssInput) {
+    var copyTimer = null;
+    rssCopyBtn.addEventListener("click", function () {
+      var text = rssInput.value;
+      function markCopied() {
+        rssCopyBtn.textContent = "已复制 ✓";
+        if (copyTimer) clearTimeout(copyTimer);
+        copyTimer = setTimeout(function () {
+          rssCopyBtn.textContent = "复制地址";
+        }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(markCopied).catch(function () {
+          rssInput.select();
+          document.execCommand("copy");
+          markCopied();
+        });
+      } else {
+        rssInput.select();
+        document.execCommand("copy");
+        markCopied();
+      }
+    });
+  }
+
   // Footer disclaimer accordion
   var discBtn = document.getElementById("disclaimer-toggle");
   var discPanel = document.getElementById("disclaimer-panel");

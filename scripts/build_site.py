@@ -10,6 +10,7 @@ import os
 import re
 import shutil
 from datetime import datetime, timezone
+from email.utils import format_datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -366,6 +367,21 @@ def render_episode_cards(episodes: List[dict], articles: Dict[str, Tuple[dict, s
     return "\n".join(cards)
 
 
+def _parse_iso_date_utc(iso_date: str) -> datetime:
+    m = re.match(r"^(\d{4})-(\d{2})-(\d{2})", (iso_date or "").strip())
+    if m:
+        return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
+    return datetime(2026, 1, 1, tzinfo=timezone.utc)
+
+
+def _sort_feed_items_desc(published_items: List[Tuple[dict, str, str]]) -> List[Tuple[dict, str, str]]:
+    return sorted(
+        published_items,
+        key=lambda item: (item[0].get("published_at") or "", item[0].get("number") or ""),
+        reverse=True,
+    )
+
+
 def build_atom_feed(
     site_title: str,
     site_subtitle: str,
@@ -373,32 +389,91 @@ def build_atom_feed(
     published_items: List[Tuple[dict, str, str]],
 ) -> str:
     now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    site_link = base_url.rstrip("/") + "/" if base_url else "index.html"
+    feed_url = base_url.rstrip("/") + "/feed.xml" if base_url else "feed.xml"
+    feed_id = base_url.rstrip("/") + "/feed.xml" if base_url else "urn:latent-space-cn:feed"
+
     entries: List[str] = []
-    for meta, body_html, _ in published_items:
+    for meta, body_html, _ in _sort_feed_items_desc(published_items):
         ep_id = meta["id"]
         title = html.escape(meta.get("title_zh") or meta.get("title_en") or ep_id)
         link = f"{base_url.rstrip('/')}/episodes/{ep_id}.html" if base_url else f"episodes/{ep_id}.html"
         pub_date = meta.get("published_at") or "2026-01-01"
         updated = f"{pub_date}T00:00:00Z"
+        author_name = html.escape(", ".join(meta.get("guests") or []) or site_title)
         entries.append(
             f"  <entry>\n"
             f"    <title>{title}</title>\n"
-            f'    <link href="{html.escape(link, quote=True)}" />\n'
+            f'    <link href="{html.escape(link, quote=True)}" rel="alternate" type="text/html" />\n'
             f"    <id>{html.escape(link)}</id>\n"
+            f"    <published>{updated}</published>\n"
             f"    <updated>{updated}</updated>\n"
+            f"    <author><name>{author_name}</name></author>\n"
             f'    <content type="html">{html.escape(body_html)}</content>\n'
             f"  </entry>"
         )
-    feed_id = base_url.rstrip("/") + "/feed.xml" if base_url else "urn:latent-space-cn:feed"
     return (
         '<?xml version="1.0" encoding="utf-8"?>\n'
         '<feed xmlns="http://www.w3.org/2005/Atom">\n'
         f"  <title>{html.escape(site_title)}</title>\n"
         f"  <subtitle>{html.escape(site_subtitle)}</subtitle>\n"
+        f'  <link href="{html.escape(site_link, quote=True)}" rel="alternate" type="text/html" />\n'
+        f'  <link href="{html.escape(feed_url, quote=True)}" rel="self" type="application/atom+xml" />\n'
         f"  <id>{html.escape(feed_id)}</id>\n"
         f"  <updated>{now_iso}</updated>\n"
+        f"  <author><name>{html.escape(site_title)}</name></author>\n"
         + "\n".join(entries)
         + "\n</feed>\n"
+    )
+
+
+def build_rss_feed(
+    site_title: str,
+    site_subtitle: str,
+    base_url: str,
+    published_items: List[Tuple[dict, str, str]],
+) -> str:
+    now_rfc822 = format_datetime(datetime.now(timezone.utc), usegmt=True)
+    site_link = base_url.rstrip("/") + "/" if base_url else "index.html"
+    rss_url = base_url.rstrip("/") + "/rss.xml" if base_url else "rss.xml"
+    is_abs = "true" if base_url else "false"
+
+    items_xml: List[str] = []
+    for meta, body_html, _ in _sort_feed_items_desc(published_items):
+        ep_id = meta["id"]
+        title_raw = meta.get("title_zh") or meta.get("title_en") or ep_id
+        title = html.escape(title_raw)
+        link = f"{base_url.rstrip('/')}/episodes/{ep_id}.html" if base_url else f"episodes/{ep_id}.html"
+        pub_dt = _parse_iso_date_utc(meta.get("published_at") or "")
+        pub_rfc822 = format_datetime(pub_dt, usegmt=True)
+        summary_parts = [
+            p for p in [meta.get("title_en") or "", ", ".join(meta.get("guests") or []), meta.get("org") or ""] if p
+        ]
+        summary_text = " · ".join(summary_parts) if summary_parts else title_raw
+        safe_cdata_body = body_html.replace("]]>", "]]]]><![CDATA[>")
+        items_xml.append(
+            f"    <item>\n"
+            f"      <title>{title}</title>\n"
+            f"      <link>{html.escape(link)}</link>\n"
+            f'      <guid isPermaLink="{is_abs}">{html.escape(link)}</guid>\n'
+            f"      <pubDate>{pub_rfc822}</pubDate>\n"
+            f"      <description>{html.escape(summary_text)}</description>\n"
+            f"      <content:encoded><![CDATA[{safe_cdata_body}]]></content:encoded>\n"
+            f"    </item>"
+        )
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+        "  <channel>\n"
+        f"    <title>{html.escape(site_title)}</title>\n"
+        f"    <link>{html.escape(site_link)}</link>\n"
+        f"    <description>{html.escape(site_subtitle)}</description>\n"
+        "    <language>zh-CN</language>\n"
+        f"    <lastBuildDate>{now_rfc822}</lastBuildDate>\n"
+        f'    <atom:link href="{html.escape(rss_url, quote=True)}" rel="self" type="application/rss+xml" />\n'
+        + "\n".join(items_xml)
+        + "\n  </channel>\n"
+        "</rss>\n"
     )
 
 
@@ -458,6 +533,7 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
         .replace("{{STATS_TEXT}}", html.escape(stats_text))
         .replace("{{FEATURED_HTML}}", featured_html)
         .replace("{{TOTAL_COUNT}}", str(total_count))
+        .replace("{{PUBLISHED_COUNT}}", str(pub_count))
         .replace("{{EPISODE_CARDS_HTML}}", cards_html)
         .replace("{{FOOTER_LINES_HTML}}", footer_lines_html)
     )
@@ -538,12 +614,15 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
             .replace("{{NEXT_LINK_HTML}}", next_html)
             .replace("{{OG_IMAGE_META}}", og_meta)
             .replace("{{COVER_HTML}}", cover_html)
+            .replace("{{PUBLISHED_COUNT}}", str(pub_count))
         )
         (out_dir / "episodes" / f"{ep_id}.html").write_text(page_html, encoding="utf-8")
 
     # Feeds & OPML
     atom_xml = build_atom_feed(site_title, site_subtitle, base_url, published_ordered)
+    rss_xml = build_rss_feed(site_title, site_subtitle, base_url, published_ordered)
     (out_dir / "feed.xml").write_text(atom_xml, encoding="utf-8")
+    (out_dir / "rss.xml").write_text(rss_xml, encoding="utf-8")
     (out_dir / "podcasts" / "latent-space" / "feed.xml").write_text(atom_xml, encoding="utf-8")
     (out_dir / "latent-space-rss.opml").write_text(build_opml(site_title, base_url), encoding="utf-8")
 

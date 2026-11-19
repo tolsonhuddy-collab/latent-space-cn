@@ -124,13 +124,20 @@ button {
   align-items: center;
   gap: 5px;
   padding: 4px 6px;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--text-muted);
   transition: color 0.15s ease;
 }
 
 .topbar-btn:hover {
   color: var(--text);
+}
+
+.rss-icon {
+  width: 13.5px;
+  height: 13.5px;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 .theme-icon {
@@ -519,6 +526,49 @@ button {
 .modal-body ul {
   margin: 8px 0 0;
   padding-left: 18px;
+}
+
+.rss-url-box {
+  display: flex;
+  gap: 8px;
+  margin: 14px 0 12px;
+}
+
+.rss-url-input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  padding: 8px 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  outline: none;
+}
+
+.rss-copy-btn {
+  padding: 8px 14px;
+  background: var(--accent);
+  color: var(--accent-text);
+  border: 1px solid var(--accent);
+  font-size: 12.5px;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.rss-copy-btn:hover {
+  opacity: 0.88;
+}
+
+.rss-links-row {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.rss-links-row a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* Article page */

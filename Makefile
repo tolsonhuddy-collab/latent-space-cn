@@ -18,7 +18,7 @@ private-site:
 	$(PYTHON) scripts/build_site.py --private --out private/site
 
 published:
-	$(PYTHON) scripts/build_site.py --published --out dist
+	$(PYTHON) scripts/build_site.py --published --out dist --base-url https://tolsonhuddy-collab.github.io/latent-space-cn/
 	mkdir -p private && (cd dist && zip -rq ../private/latent-space-cn-site.zip .)
 
 release: test audit published

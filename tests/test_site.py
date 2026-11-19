@@ -26,6 +26,7 @@ class TestSiteBuild(unittest.TestCase):
             self.assertTrue((out / "style.css").exists())
             self.assertTrue((out / "app.js").exists())
             self.assertTrue((out / "feed.xml").exists())
+            self.assertTrue((out / "rss.xml").exists())
             self.assertTrue((out / "latent-space-rss.opml").exists())
             self.assertTrue((out / "episodes" / "001-demo.html").exists())
             self.assertTrue((out / "episodes" / "002-demo.html").exists())
@@ -67,8 +68,61 @@ class TestSiteBuild(unittest.TestCase):
             self.assertIn('class="article-cover"', article_html)
             self.assertIn('property="og:image"', article_html)
             self.assertIn('src="covers/001-leash-bio.jpg"', index_html)
+            self.assertIn('id="rss-open"', index_html)
+            self.assertIn("RSS 订阅", index_html)
+            self.assertIn('id="rss-modal"', index_html)
+            self.assertIn("application/rss+xml", index_html)
+            self.assertIn('id="rss-open"', article_html)
+            self.assertIn('id="rss-modal"', article_html)
+            self.assertIn("application/rss+xml", article_html)
             for ep_id in ("001-leash-bio", "010-automating-science", "011-boltz", "020-periodic-labs"):
                 self.assertTrue((out / "covers" / f"{ep_id}.jpg").exists())
+
+    def test_feeds_contain_all_published_episodes(self) -> None:
+        import xml.etree.ElementTree as ET
+
+        catalog = json.loads((ROOT / "catalog" / "episodes.json").read_text(encoding="utf-8"))
+        expected_ids = [ep["id"] for ep in catalog["episodes"]]
+        base_url = "https://tolsonhuddy-collab.github.io/latent-space-cn/"
+
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "dist"
+            build_site.build_site(mode="published", out_dir=out, base_url=base_url)
+
+            ns = {"a": "http://www.w3.org/2005/Atom"}
+            for feed_rel in ("feed.xml", "podcasts/latent-space/feed.xml"):
+                root = ET.fromstring((out / feed_rel).read_text(encoding="utf-8"))
+                entries = root.findall("a:entry", ns)
+                self.assertEqual(len(entries), len(expected_ids))
+                seen_ids = set()
+                for entry in entries:
+                    link_el = entry.find("a:link", ns)
+                    self.assertIsNotNone(link_el)
+                    href = link_el.attrib.get("href", "")
+                    ep_id = href.rsplit("/", 1)[-1].removesuffix(".html")
+                    seen_ids.add(ep_id)
+                    content_el = entry.find("a:content", ns)
+                    self.assertIsNotNone(content_el)
+                    self.assertGreater(len(content_el.text or ""), 5000, ep_id)
+                self.assertEqual(seen_ids, set(expected_ids))
+
+            rss_root = ET.fromstring((out / "rss.xml").read_text(encoding="utf-8"))
+            items = rss_root.findall("./channel/item")
+            self.assertEqual(len(items), len(expected_ids))
+            content_ns = "{http://purl.org/rss/1.0/modules/content/}encoded"
+            seen_rss_ids = set()
+            for item in items:
+                link = item.findtext("link", "")
+                ep_id = link.rsplit("/", 1)[-1].removesuffix(".html")
+                seen_rss_ids.add(ep_id)
+                body = item.findtext(content_ns, "")
+                self.assertGreater(len(body), 5000, ep_id)
+            self.assertEqual(seen_rss_ids, set(expected_ids))
+
+            opml_root = ET.fromstring((out / "latent-space-rss.opml").read_text(encoding="utf-8"))
+            outline = opml_root.find("./body/outline")
+            self.assertIsNotNone(outline)
+            self.assertEqual(outline.attrib.get("xmlUrl"), f"{base_url}feed.xml")
 
     def test_cover_integrity(self) -> None:
         import hashlib
