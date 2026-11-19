@@ -17,6 +17,8 @@ class TestSiteBuild(unittest.TestCase):
         self.assertGreaterEqual(len(episodes), 20)
         ids = [ep["id"] for ep in episodes]
         self.assertEqual(len(ids), len(set(ids)))
+        for ep in episodes:
+            self.assertIn(ep.get("category"), build_site.CATEGORY_ORDER, ep["id"])
 
     def test_demo_build(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -77,6 +79,14 @@ class TestSiteBuild(unittest.TestCase):
             self.assertIn('id="rss-open"', article_html)
             self.assertIn('id="rss-modal"', article_html)
             self.assertIn("application/rss+xml", article_html)
+            self.assertIn("合成超级智能需要把大模型放进真实实验室", index_html)
+            for cat in build_site.CATEGORY_ORDER:
+                self.assertIn(cat, index_html)
+            self.assertIn('data-sort="latest"', index_html)
+            self.assertIn('data-sort="number"', index_html)
+            self.assertIn("万字", index_html)
+            self.assertIn("阅读约", index_html)
+            self.assertNotIn('<a class="card-thumb has-cover" href="episodes/001-leash-bio.html"><img src="covers/001-leash-bio.jpg" alt="Lab-in-the-Loop at Compute Speed — Ian Quigley, Leash Bio" loading="lazy" /><span class="card-num">', index_html)
             for ep_id in ("001-leash-bio", "010-automating-science", "011-boltz", "020-periodic-labs"):
                 self.assertTrue((out / "covers" / f"{ep_id}.jpg").exists())
 

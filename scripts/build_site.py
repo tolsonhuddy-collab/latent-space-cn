@@ -161,6 +161,7 @@ def build_demo_data() -> Tuple[dict, List[dict], Dict[str, Tuple[dict, str]]]:
         {
             "id": "001-demo",
             "number": "001",
+            "category": "科学智能体与硬件",
             "title_en": "Lab in the Loop — Demo Episode One",
             "title_zh": "示例精读一：实验闭环与科学模型",
             "guests": ["Guest A"],
@@ -173,6 +174,7 @@ def build_demo_data() -> Tuple[dict, List[dict], Dict[str, Tuple[dict, str]]]:
         {
             "id": "002-demo",
             "number": "002",
+            "category": "生物与新药",
             "title_en": "BioAI Phase Shift — Demo Episode Two",
             "title_zh": "示例精读二：蛋白质设计正在进入软件迭代循环",
             "guests": ["Guest B", "Guest C"],
@@ -185,6 +187,7 @@ def build_demo_data() -> Tuple[dict, List[dict], Dict[str, Tuple[dict, str]]]:
         {
             "id": "003-demo",
             "number": "003",
+            "category": "物理与数学",
             "title_en": "Foundation Models for Physics — Demo Episode Three",
             "title_zh": "",
             "guests": ["Guest D"],
@@ -242,21 +245,60 @@ def collect_published_data(private_mode: bool = False) -> Tuple[dict, List[dict]
     return homepage, episodes, articles
 
 
+CATEGORY_ORDER = ["生物与新药", "材料与化学", "物理与数学", "科学智能体与硬件"]
+
+
+def infer_category(ep: dict) -> str:
+    cat = (ep.get("category") or "").strip()
+    if cat:
+        return cat
+    blob = f"{ep.get('title_en') or ''} {ep.get('title_zh') or ''}".lower()
+    if any(k in blob for k in ("protein", "drug", "bio", "cell", "cancer", "基因组", "生物", "蛋白质")):
+        return "生物与新药"
+    if any(k in blob for k in ("material", "alloy", "superconductor", "材料", "超导")):
+        return "材料与化学"
+    if any(k in blob for k in ("physics", "math", "散射", "数学", "物理")):
+        return "物理与数学"
+    return "科学智能体与硬件"
+
+
+def count_cjk_and_read_mins(md_text: str) -> Tuple[int, int, str]:
+    lines = md_text.splitlines()
+    if lines and lines[0].strip().startswith("# "):
+        body_text = "\n".join(lines[1:])
+    else:
+        body_text = md_text
+    cjk = len(re.findall(r"[\u4e00-\u9fff]", body_text))
+    if cjk <= 0:
+        return 0, 0, ""
+    read_mins = max(1, round(cjk / 450))
+    words_label = f"约 {cjk / 10000:.1f} 万字" if cjk >= 10000 else f"约 {cjk:,} 字"
+    return cjk, read_mins, words_label
+
+
 def render_featured_html(homepage: dict, episodes: List[dict], articles: Dict[str, Tuple[dict, str]]) -> str:
-    feat_id = homepage.get("featured_id") or ""
+    feat_id = (homepage.get("featured_id") or "").strip()
     feat_ep: Optional[dict] = None
-    if feat_id and feat_id in articles:
-        feat_ep = articles[feat_id][0]
+    feat_md = ""
+    if (not feat_id or feat_id == "latest") and articles:
+        feat_ep, feat_md = max(
+            articles.values(),
+            key=lambda pair: (pair[0].get("published_at") or "", pair[0].get("number") or ""),
+        )
+    elif feat_id and feat_id in articles:
+        feat_ep, feat_md = articles[feat_id]
     else:
         for ep in episodes:
             if ep["id"] in articles:
-                feat_ep = articles[ep["id"]][0]
+                feat_ep, feat_md = articles[ep["id"]]
                 break
 
     if not feat_ep:
         return ""
 
     ep_id = feat_ep["id"]
+    num = feat_ep.get("number") or ""
+    cat = infer_category(feat_ep)
     title_zh = html.escape(feat_ep.get("title_zh") or feat_ep.get("title_en") or "")
     title_en = html.escape(feat_ep.get("title_en") or "")
     guests = ", ".join(feat_ep.get("guests") or [])
@@ -264,13 +306,25 @@ def render_featured_html(homepage: dict, episodes: List[dict], articles: Dict[st
     date_zh = format_date_zh(feat_ep.get("published_at") or "")
     dur = feat_ep.get("duration_minutes")
     source_url = feat_ep.get("source_url") or "https://www.latent.space/"
+    cjk, read_mins, words_label = count_cjk_and_read_mins(feat_md)
 
-    meta_parts = [p for p in [guests, org, date_zh, f"约 {dur} 分钟" if dur else ""] if p]
+    meta_parts = [
+        p
+        for p in [
+            guests,
+            org,
+            date_zh,
+            f"{words_label} · 阅读约 {read_mins} 分钟" if cjk else "",
+            f"原节目约 {dur} 分钟" if dur else "",
+        ]
+        if p
+    ]
     meta_html = " · ".join(html.escape(p) for p in meta_parts)
     if source_url:
         meta_html += f' · <a href="{html.escape(source_url, quote=True)}" target="_blank" rel="noopener noreferrer">原节目页</a>'
 
-    kicker = html.escape(homepage.get("featured_label") or "最新精读")
+    kicker_label = homepage.get("featured_label") or "最新精读"
+    kicker = html.escape(" · ".join(p for p in [num, cat, kicker_label] if p))
     article_href = f"episodes/{html.escape(ep_id, quote=True)}.html"
     cover = feat_ep.get("cover") or ""
     if cover:
@@ -300,28 +354,70 @@ def render_featured_html(homepage: dict, episodes: List[dict], articles: Dict[st
     """.strip()
 
 
-def render_episode_cards(episodes: List[dict], articles: Dict[str, Tuple[dict, str]]) -> str:
-    cards: List[str] = []
+def render_category_filters(episodes: List[dict]) -> str:
+    counts: Dict[str, int] = {}
     for ep in episodes:
+        cat = infer_category(ep)
+        counts[cat] = counts.get(cat, 0) + 1
+
+    ordered_cats = [c for c in CATEGORY_ORDER if counts.get(c, 0) > 0] + [
+        c for c in counts if c not in CATEGORY_ORDER and counts[c] > 0
+    ]
+    buttons = [
+        f'<button type="button" class="filter-pill is-active" data-category="all">全部 <span class="pill-count">{len(episodes)}</span></button>'
+    ]
+    for cat in ordered_cats:
+        buttons.append(
+            f'<button type="button" class="filter-pill" data-category="{html.escape(cat, quote=True)}">'
+            f'{html.escape(cat)} <span class="pill-count">{counts[cat]}</span></button>'
+        )
+    return "\n              ".join(buttons)
+
+
+def render_episode_cards(episodes: List[dict], articles: Dict[str, Tuple[dict, str]]) -> str:
+    ordered_eps = sorted(
+        episodes,
+        key=lambda e: (
+            (articles[e["id"]][0] if e["id"] in articles else e).get("published_at") or "",
+            e.get("number") or "",
+        ),
+        reverse=True,
+    )
+    cards: List[str] = []
+    for ep in ordered_eps:
         ep_id = ep["id"]
         num = html.escape(ep.get("number") or "")
         is_pub = ep_id in articles
         merged = articles[ep_id][0] if is_pub else ep
+        cat = infer_category(merged)
+        pub_iso = (merged.get("published_at") or "").strip()
         title_en = merged.get("title_en") or ""
         title_zh = merged.get("title_zh") or ""
         guests = ", ".join(merged.get("guests") or [])
         org = merged.get("org") or ""
-        date_zh = format_date_zh(merged.get("published_at") or "")
+        date_zh = format_date_zh(pub_iso)
         dur = merged.get("duration_minutes")
         source_url = merged.get("source_url") or ""
+        _, read_mins, words_label = count_cjk_and_read_mins(articles[ep_id][1]) if is_pub else (0, 0, "")
 
         status_label = "" if is_pub else "待精读"
         article_href = f"episodes/{html.escape(ep_id, quote=True)}.html"
 
-        search_blob = " ".join(p for p in [num, title_zh, title_en, guests, org, status_label] if p)
+        search_blob = " ".join(p for p in [num, cat, title_zh, title_en, guests, org, status_label] if p)
         guests_line = " · ".join(p for p in [guests, org] if p)
 
-        meta_parts = [p for p in [date_zh, f"约 {dur} 分钟" if dur else ""] if p]
+        if is_pub:
+            meta_parts = [
+                p
+                for p in [
+                    date_zh,
+                    f"阅读约 {read_mins} 分钟" if read_mins else "",
+                    f"原节目 {dur} 分钟" if dur and not read_mins else "",
+                ]
+                if p
+            ]
+        else:
+            meta_parts = [p for p in [date_zh, f"约 {dur} 分钟" if dur else ""] if p]
         meta_html = " · ".join(html.escape(p) for p in meta_parts)
         if source_url:
             sep = " · " if meta_html else ""
@@ -335,28 +431,25 @@ def render_episode_cards(episodes: List[dict], articles: Dict[str, Tuple[dict, s
         )
         thumb_cls = "card-thumb has-cover" if cover else "card-thumb"
         if is_pub:
-            thumb_html = (
-                f'<a class="{thumb_cls}" href="{article_href}">'
-                f"{img_html}"
-                f'<span class="card-num">{num}</span>'
-                f"</a>"
-            )
+            thumb_inner = img_html if cover else f'<span class="card-num">{num}</span>'
+            thumb_html = f'<a class="{thumb_cls}" href="{article_href}">{thumb_inner}</a>'
             title_html = f'<h3 class="card-title"><a href="{article_href}">{html.escape(title_zh or title_en)} ↗</a></h3>'
         else:
-            thumb_html = (
-                f'<div class="{thumb_cls}">'
-                f"{img_html}"
-                f'<span class="card-num">{num}</span>'
-                f'<span class="card-badge">{status_label}</span>'
-                f"</div>"
-            )
+            if cover:
+                thumb_inner = f'{img_html}<span class="card-badge">{status_label}</span>'
+            else:
+                thumb_inner = f'<span class="card-num">{num}</span><span class="card-badge">{status_label}</span>'
+            thumb_html = f'<div class="{thumb_cls}">{thumb_inner}</div>'
             title_html = f'<h3 class="card-title">{html.escape(title_en)}</h3>'
 
+        status_line = " · ".join(
+            html.escape(p) for p in [num, cat, words_label if is_pub else status_label] if p
+        )
         card_class = "episode-card is-published" if is_pub else "episode-card"
         cards.append(
-            f'<article class="{card_class}" data-search="{html.escape(search_blob, quote=True)}">'
+            f'<article class="{card_class}" data-search="{html.escape(search_blob, quote=True)}" data-category="{html.escape(cat, quote=True)}" data-number="{num}" data-date="{html.escape(pub_iso, quote=True)}">'
             f"{thumb_html}"
-            f'<div class="card-status-line">{num}{" · " + status_label if status_label else ""}</div>'
+            f'<div class="card-status-line">{status_line}</div>'
             f"{title_html}"
             f'<p class="card-en">{html.escape(title_en)}</p>'
             f'<p class="card-guests">{html.escape(guests_line)}</p>'
@@ -522,6 +615,7 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
     footer_lines_html = "\n".join(f"<p>{html.escape(line)}</p>" for line in footer_lines)
 
     featured_html = render_featured_html(homepage, episodes, articles)
+    category_filters_html = render_category_filters(episodes)
     cards_html = render_episode_cards(episodes, articles)
 
     index_tpl = (WEB_DIR / "index.html").read_text(encoding="utf-8")
@@ -533,6 +627,7 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
         .replace("{{FEATURED_HTML}}", featured_html)
         .replace("{{TOTAL_COUNT}}", str(total_count))
         .replace("{{PUBLISHED_COUNT}}", str(pub_count))
+        .replace("{{CATEGORY_FILTERS_HTML}}", category_filters_html)
         .replace("{{EPISODE_CARDS_HTML}}", cards_html)
         .replace("{{FOOTER_LINES_HTML}}", footer_lines_html)
     )

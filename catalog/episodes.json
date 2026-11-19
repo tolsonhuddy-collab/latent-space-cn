@@ -22,7 +22,8 @@
       "status": "reviewed",
       "youtube_id": "hQSBJVreLms",
       "cover": "covers/001-leash-bio.jpg",
-      "cover_sha256": "2a2a9a1f672bc948442b9b6e5814b1a290bbda208c020a8ec2ea8297ba46427a"
+      "cover_sha256": "2a2a9a1f672bc948442b9b6e5814b1a290bbda208c020a8ec2ea8297ba46427a",
+      "category": "生物与新药"
     },
     {
       "id": "002-kohli-protein",
@@ -45,7 +46,8 @@
       "status": "reviewed",
       "youtube_id": "NufiHZfMwaw",
       "cover": "covers/002-kohli-protein.jpg",
-      "cover_sha256": "a5de47efe7261dcedee32808b92e50003a9fe3e01844189d04dcd5e8b7e97365"
+      "cover_sha256": "a5de47efe7261dcedee32808b92e50003a9fe3e01844189d04dcd5e8b7e97365",
+      "category": "生物与新药"
     },
     {
       "id": "003-anima-physics",
@@ -67,7 +69,8 @@
       "status": "reviewed",
       "youtube_id": "79mIutht1f4",
       "cover": "covers/003-anima-physics.jpg",
-      "cover_sha256": "26cbee031192566b2345eb5008b21c326813f13ca07db919818dce90b1940d9d"
+      "cover_sha256": "26cbee031192566b2345eb5008b21c326813f13ca07db919818dce90b1940d9d",
+      "category": "物理与数学"
     },
     {
       "id": "004-chai-discovery",
@@ -90,7 +93,8 @@
       "status": "reviewed",
       "youtube_id": "Qp5xklyJySI",
       "cover": "covers/004-chai-discovery.jpg",
-      "cover_sha256": "bb2272997c4bbf338ce861781a6d593a25eb74eee32fa81981edfc36ad670222"
+      "cover_sha256": "bb2272997c4bbf338ce861781a6d593a25eb74eee32fa81981edfc36ad670222",
+      "category": "生物与新药"
     },
     {
       "id": "005-lila-lab",
@@ -113,7 +117,8 @@
       "status": "reviewed",
       "youtube_id": "2wIxPWK6nCs",
       "cover": "covers/005-lila-lab.jpg",
-      "cover_sha256": "3dd19c2364d62d5884cc37dee693c0d45c4cea3173207bd015bfdcdf29b54358"
+      "cover_sha256": "3dd19c2364d62d5884cc37dee693c0d45c4cea3173207bd015bfdcdf29b54358",
+      "category": "科学智能体与硬件"
     },
     {
       "id": "006-genesis-diffusion",
@@ -136,7 +141,8 @@
       "status": "reviewed",
       "youtube_id": "YQWXxnkK4dw",
       "cover": "covers/006-genesis-diffusion.jpg",
-      "cover_sha256": "f767eca2ca0e52925bd8abc0e02532278c748f5b9ab4d9715dd926a04c0a59fb"
+      "cover_sha256": "f767eca2ca0e52925bd8abc0e02532278c748f5b9ab4d9715dd926a04c0a59fb",
+      "category": "生物与新药"
     },
     {
       "id": "007-radical-ai",
@@ -158,7 +164,8 @@
       "status": "reviewed",
       "youtube_id": "4-sWFytOfRw",
       "cover": "covers/007-radical-ai.jpg",
-      "cover_sha256": "92104fd72350a5dc549d8c941103484aa1450dec3398f44ebcc36009565c6456"
+      "cover_sha256": "92104fd72350a5dc549d8c941103484aa1450dec3398f44ebcc36009565c6456",
+      "category": "材料与化学"
     },
     {
       "id": "008-materials-ai",
@@ -180,7 +187,8 @@
       "status": "reviewed",
       "youtube_id": "KSCCKCz2x04",
       "cover": "covers/008-materials-ai.jpg",
-      "cover_sha256": "0e53f208b1d6affb7a93eadce17a09f119ea3d914a0a6ffdd07a01af7b827079"
+      "cover_sha256": "0e53f208b1d6affb7a93eadce17a09f119ea3d914a0a6ffdd07a01af7b827079",
+      "category": "材料与化学"
     },
     {
       "id": "009-caspai-materials",
@@ -202,7 +210,8 @@
       "status": "reviewed",
       "youtube_id": "V7_Ec2WFAWs",
       "cover": "covers/009-caspai-materials.jpg",
-      "cover_sha256": "6918b9dfc6bc3f624873718fb25f7f2815314a5fa18407ceb292f79a9eb4b30e"
+      "cover_sha256": "6918b9dfc6bc3f624873718fb25f7f2815314a5fa18407ceb292f79a9eb4b30e",
+      "category": "材料与化学"
     },
     {
       "id": "010-automating-science",
@@ -224,7 +233,8 @@
       "status": "reviewed",
       "youtube_id": "XqoBSB3nsgw",
       "cover": "covers/010-automating-science.jpg",
-      "cover_sha256": "6e7410059c9de8f5a0904965152184658a93ef7a8921e22131a52aafe7eed0c6"
+      "cover_sha256": "6e7410059c9de8f5a0904965152184658a93ef7a8921e22131a52aafe7eed0c6",
+      "category": "科学智能体与硬件"
     },
     {
       "id": "011-boltz",
@@ -247,7 +257,8 @@
       "status": "reviewed",
       "youtube_id": "nP0N1kYLegc",
       "cover": "covers/011-boltz.jpg",
-      "cover_sha256": "9651c806bf6b155a5b277474719c6b7fba1509e9e5d76247947495466da60b52"
+      "cover_sha256": "9651c806bf6b155a5b277474719c6b7fba1509e9e5d76247947495466da60b52",
+      "category": "生物与新药"
     },
     {
       "id": "012-noetik",
@@ -270,7 +281,8 @@
       "status": "reviewed",
       "youtube_id": "uqM8qjbLRHA",
       "cover": "covers/012-noetik.jpg",
-      "cover_sha256": "f2e0e8be9697623ce4f52611df26350bcf5515af04b47f92fa5bf297b2ed9cb3"
+      "cover_sha256": "f2e0e8be9697623ce4f52611df26350bcf5515af04b47f92fa5bf297b2ed9cb3",
+      "category": "生物与新药"
     },
     {
       "id": "013-vibephysics",
@@ -292,7 +304,8 @@
       "status": "reviewed",
       "youtube_id": "9d899Ram9Bs",
       "cover": "covers/013-vibephysics.jpg",
-      "cover_sha256": "2235397237993c13935a7c284a82905614b95c70eaad462269a2338cf81791bc"
+      "cover_sha256": "2235397237993c13935a7c284a82905614b95c70eaad462269a2338cf81791bc",
+      "category": "物理与数学"
     },
     {
       "id": "014-fourth-law-drones",
@@ -315,7 +328,8 @@
       "status": "reviewed",
       "youtube_id": "UmCZBwsibgs",
       "cover": "covers/014-fourth-law-drones.jpg",
-      "cover_sha256": "cf9174097f119e75c994756eeaa22b3c8052c4f87b004f3cb958f84613e730a6"
+      "cover_sha256": "cf9174097f119e75c994756eeaa22b3c8052c4f87b004f3cb958f84613e730a6",
+      "category": "科学智能体与硬件"
     },
     {
       "id": "015-esm",
@@ -337,7 +351,8 @@
       "status": "reviewed",
       "youtube_id": "XdevS0GSuiQ",
       "cover": "covers/015-esm.jpg",
-      "cover_sha256": "3f29ca08229468f484e12d82dea8f8088630bd5fbf17cad940dd384e12a0df3b"
+      "cover_sha256": "3f29ca08229468f484e12d82dea8f8088630bd5fbf17cad940dd384e12a0df3b",
+      "category": "生物与新药"
     },
     {
       "id": "016-axiom-math",
@@ -359,7 +374,8 @@
       "status": "reviewed",
       "youtube_id": "abYcV5LHMG4",
       "cover": "covers/016-axiom-math.jpg",
-      "cover_sha256": "207a28803252d431744485047864fcc4a3f9d2bd3ecff061713dded57e5adc57"
+      "cover_sha256": "207a28803252d431744485047864fcc4a3f9d2bd3ecff061713dded57e5adc57",
+      "category": "物理与数学"
     },
     {
       "id": "017-xaira",
@@ -382,7 +398,8 @@
       "status": "reviewed",
       "youtube_id": "2AdS-2uuH80",
       "cover": "covers/017-xaira.jpg",
-      "cover_sha256": "4bcae6ea2d892cb1fe55985e1ff1e2e219a78fb746e9b4e455b5c30b34ebba97"
+      "cover_sha256": "4bcae6ea2d892cb1fe55985e1ff1e2e219a78fb746e9b4e455b5c30b34ebba97",
+      "category": "生物与新药"
     },
     {
       "id": "018-john-platt",
@@ -404,7 +421,8 @@
       "status": "reviewed",
       "youtube_id": "2xBSGluFkG0",
       "cover": "covers/018-john-platt.jpg",
-      "cover_sha256": "fe9c6dd98a12f0c291d5133d627fc5c611452bbde7712293022bd9deeb3fea30"
+      "cover_sha256": "fe9c6dd98a12f0c291d5133d627fc5c611452bbde7712293022bd9deeb3fea30",
+      "category": "物理与数学"
     },
     {
       "id": "019-radical-numerics",
@@ -426,7 +444,8 @@
       "status": "reviewed",
       "youtube_id": "B7DdNj_VjcU",
       "cover": "covers/019-radical-numerics.jpg",
-      "cover_sha256": "be4bf32cea7627e3d4c9efb76563418600bebefc0c19c748ed9b49fd5967ca9d"
+      "cover_sha256": "be4bf32cea7627e3d4c9efb76563418600bebefc0c19c748ed9b49fd5967ca9d",
+      "category": "生物与新药"
     },
     {
       "id": "020-periodic-labs",
@@ -449,7 +468,8 @@
       "status": "reviewed",
       "youtube_id": "YHiqVRxGViM",
       "cover": "covers/020-periodic-labs.jpg",
-      "cover_sha256": "662839abb7f8ddd5c8e9cfa5fae0751bf5ae1145b02fbe44ade62167bd87c9cf"
+      "cover_sha256": "662839abb7f8ddd5c8e9cfa5fae0751bf5ae1145b02fbe44ade62167bd87c9cf",
+      "category": "材料与化学"
     }
   ]
 }

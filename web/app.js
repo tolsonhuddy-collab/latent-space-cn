@@ -111,11 +111,13 @@
     });
   }
 
-  // Catalog search
+  // Catalog search, category filter & sort
   var searchInput = document.getElementById("catalog-search");
   var grid = document.getElementById("episode-grid");
   var countEl = document.getElementById("catalog-count");
-  if (searchInput && grid) {
+  var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter-pill"));
+  var sortBtns = Array.prototype.slice.call(document.querySelectorAll(".sort-btn"));
+  if (grid) {
     var cards = Array.prototype.slice.call(grid.querySelectorAll(".episode-card"));
     var emptyEl = document.createElement("div");
     emptyEl.className = "empty-state";
@@ -123,12 +125,18 @@
     emptyEl.style.display = "none";
     grid.appendChild(emptyEl);
 
-    searchInput.addEventListener("input", function () {
-      var q = searchInput.value.trim().toLowerCase();
+    var activeCategory = "all";
+    var activeSort = "latest";
+
+    function updateCatalog() {
+      var q = searchInput ? searchInput.value.trim().toLowerCase() : "";
       var visible = 0;
       cards.forEach(function (card) {
+        var cat = card.getAttribute("data-category") || "";
         var hay = (card.getAttribute("data-search") || "").toLowerCase();
-        var match = !q || hay.indexOf(q) !== -1;
+        var catOk = activeCategory === "all" || cat === activeCategory;
+        var qOk = !q || hay.indexOf(q) !== -1;
+        var match = catOk && qOk;
         card.style.display = match ? "" : "none";
         if (match) visible += 1;
       });
@@ -136,6 +144,50 @@
       if (countEl) {
         countEl.textContent = "共 " + visible + " 期";
       }
+    }
+
+    function applySort() {
+      cards.sort(function (a, b) {
+        if (activeSort === "number") {
+          var na = a.getAttribute("data-number") || "";
+          var nb = b.getAttribute("data-number") || "";
+          return na.localeCompare(nb);
+        }
+        var da = (a.getAttribute("data-date") || "") + "-" + (a.getAttribute("data-number") || "");
+        var db = (b.getAttribute("data-date") || "") + "-" + (b.getAttribute("data-number") || "");
+        return db.localeCompare(da);
+      });
+      cards.forEach(function (card) {
+        grid.appendChild(card);
+      });
+      grid.appendChild(emptyEl);
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener("input", updateCatalog);
+    }
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        activeCategory = btn.getAttribute("data-category") || "all";
+        filterBtns.forEach(function (b) {
+          b.classList.toggle("is-active", b === btn);
+        });
+        updateCatalog();
+      });
+    });
+
+    sortBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var nextSort = btn.getAttribute("data-sort") || "latest";
+        if (nextSort === activeSort) return;
+        activeSort = nextSort;
+        sortBtns.forEach(function (b) {
+          b.classList.toggle("is-active", b === btn);
+        });
+        applySort();
+        updateCatalog();
+      });
     });
   }
 

@@ -20,15 +20,7 @@
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
-      <div class="search-box">
-        <input
-          id="catalog-search"
-          class="search-input"
-          type="search"
-          placeholder="按期号/主题/嘉宾搜索"
-          aria-label="按期号、主题或嘉宾搜索"
-        />
-      </div>
+      <div class="topbar-brand">非官方中文阅读项目 · AI FOR SCIENCE</div>
       <div class="topbar-actions">
         <a id="rss-open" class="topbar-btn topbar-rss" href="{{BASE_PATH}}feed.xml" title="RSS / Atom 全文订阅">
           <svg class="rss-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -66,6 +58,30 @@
           <h2 class="catalog-heading">全部节目</h2>
           <span id="catalog-count" class="catalog-count">共 {{TOTAL_COUNT}} 期</span>
         </div>
+        <div class="catalog-toolbar">
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="20" y1="20" x2="16.2" y2="16.2"></line>
+            </svg>
+            <input
+              id="catalog-search"
+              class="search-input"
+              type="search"
+              placeholder="搜索期号、主题、嘉宾或机构…"
+              aria-label="按期号、主题或嘉宾搜索"
+            />
+          </div>
+          <div class="catalog-controls">
+            <div id="category-filters" class="filter-pills" role="group" aria-label="按学科领域筛选">
+              {{CATEGORY_FILTERS_HTML}}
+            </div>
+            <div class="sort-group" role="group" aria-label="排序方式">
+              <button type="button" class="sort-btn is-active" data-sort="latest">最新优先</button>
+              <button type="button" class="sort-btn" data-sort="number">期号顺序</button>
+            </div>
+          </div>
+        </div>
         <div id="episode-grid" class="episode-grid">
           {{EPISODE_CARDS_HTML}}
         </div>
@@ -102,7 +118,7 @@
       <div class="modal-body">
         <p><strong>Latent Space 中文精读</strong> 将科学长谈改写为可独立阅读的中文长文，而非逐句翻译或会议纪要。</p>
         <ul>
-          <li><strong>检索：</strong>顶部搜索框支持按期号（如 <code>004</code>）、中文标题、英文原标题、嘉宾或机构名称实时筛选。</li>
+          <li><strong>检索：</strong>支持按期号（如 <code>004</code>）、中文标题、英文原标题、嘉宾或机构名称检索，并按学科领域筛选或切换排序。</li>
           <li><strong>状态：</strong>点击标题或封面进入全文精读；标有「待精读」的节目暂列目录并保留原节目链接。</li>
           <li><strong>阅读：</strong>文章页支持调节字号（<code>A-</code> / <code>A+</code>）、切换明暗主题、目录跳转与阅读进度指示。</li>
           <li><strong>订阅：</strong>点击顶部「RSS 订阅」可一键复制 Atom 全文订阅地址，或直接打开 RSS 2.0 源与下载 OPML 导入常用阅读器。</li>
