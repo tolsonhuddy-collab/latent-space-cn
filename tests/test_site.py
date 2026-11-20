@@ -184,3 +184,15 @@ class TestSiteBuild(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class GlossaryExcludeTest(unittest.TestCase):
+    def test_new_terms_skip_drones_article(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "dist"
+            build_site.build_site(mode="published", out_dir=out)
+            drones = (out / "episodes" / "014-fourth-law-drones.html").read_text(encoding="utf-8")
+            self.assertNotIn('data-term="ai-agent"', drones)
+            self.assertNotIn('data-term="fine-tuning"', drones)
+            esm = (out / "episodes" / "015-esm.html").read_text(encoding="utf-8")
+            self.assertIn('data-term="protein-folding"', esm)

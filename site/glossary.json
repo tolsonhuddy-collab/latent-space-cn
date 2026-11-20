@@ -815,6 +815,150 @@
       "category": "科学智能体与硬件",
       "aliases": ["蜂群编队", "蜂群", "swarm"],
       "definition": "多架具备局域自主感知与协同决策能力的无人机以极少人类操作员监督形成集群分工，协同侦察、诱导火力并完成高强度饱和任务。"
+    },
+    {
+      "id": "ai-agent",
+      "zh": "智能体",
+      "en": "AI Agent",
+      "category": "人工智能与计算",
+      "aliases": ["智能体", "AI agent", "AI Agent"],
+      "definition": "能自己拆任务、调用工具、看结果再决定下一步的 AI 程序。和只回答一句话的聊天机器人不同，它像一个会自己动手干活的助手，比如自己查文献、设计实验、写代码跑分析。",
+      "exclude_articles": ["014-fourth-law-drones"]
+    },
+    {
+      "id": "foundation-model",
+      "zh": "基础模型",
+      "en": "Foundation Model",
+      "category": "人工智能与计算",
+      "aliases": ["基础模型", "foundation model", "foundation models"],
+      "definition": "先用海量数据训练出的「通才」大模型，学到的是通用能力，之后再针对具体任务稍加调教就能用。GPT 这类大语言模型就是基础模型，科学领域也有专门学蛋白质、分子或细胞数据的基础模型。",
+      "exclude_articles": ["014-fourth-law-drones"]
+    },
+    {
+      "id": "representation",
+      "zh": "表征",
+      "en": "Representation",
+      "category": "人工智能与计算",
+      "aliases": ["表征", "representation", "representations"],
+      "definition": "模型把一段文字、一个分子或一张图转换成的一串数字，用来概括它的关键特征。表征学得好，相似的东西在数字上也挨得近，模型就更容易判断、比较和预测。",
+      "exclude_articles": ["014-fourth-law-drones", "005-lila-lab", "007-radical-ai", "009-caspai-materials", "020-periodic-labs"],
+      "skip_after": ["材料", "难度"],
+      "skip_before": ["光谱", "用来", "结构", "完整", "步是"]
+    },
+    {
+      "id": "fine-tuning",
+      "zh": "微调",
+      "en": "Fine-tuning",
+      "category": "人工智能与计算",
+      "aliases": ["微调", "fine-tuning", "fine-tune", "finetuning"],
+      "definition": "在已经训练好的大模型基础上，再用一小批特定领域的数据接着训练，让它擅长某件具体的事。好比一个大学毕业生入职后再做岗前培训，不用从头上学。",
+      "exclude_articles": ["014-fourth-law-drones"],
+      "skip_after": ["一下", "排列"],
+      "skip_before": ["小幅"]
+    },
+    {
+      "id": "pre-training",
+      "zh": "预训练",
+      "en": "Pre-training",
+      "category": "人工智能与计算",
+      "aliases": ["预训练", "pre-training", "pretraining"],
+      "definition": "大模型训练的第一阶段：用海量、通常没有人工标注的数据，让模型自己学习其中的规律。这一步最花钱、最耗算力，决定了模型的底子。",
+      "exclude_articles": ["014-fourth-law-drones"]
+    },
+    {
+      "id": "post-training",
+      "zh": "后训练",
+      "en": "Post-training",
+      "category": "人工智能与计算",
+      "aliases": ["后训练", "post-training", "posttraining"],
+      "definition": "预训练之后的一系列调教步骤，比如微调、用人类反馈或奖励信号做强化学习，目的是让模型更听话、更会推理、更适合实际使用。",
+      "exclude_articles": ["014-fourth-law-drones"]
+    },
+    {
+      "id": "benchmark",
+      "zh": "基准",
+      "en": "Benchmark",
+      "category": "人工智能与计算",
+      "aliases": ["基准测试", "基准", "benchmark", "benchmarks"],
+      "definition": "一套公开的标准考题，用来给不同模型打分、排名。好的基准能看出真实进步，但模型也可能「刷题」刷高分，实际能力不一定跟着涨。",
+      "exclude_articles": ["014-fourth-law-drones"],
+      "skip_after": ["状态", "模型"]
+    },
+    {
+      "id": "emergence",
+      "zh": "涌现",
+      "en": "Emergence",
+      "category": "人工智能与计算",
+      "aliases": ["涌现", "emergence", "emergent"],
+      "definition": "系统规模变大后，突然出现小规模时没有的能力或现象。比如模型参数和数据加到一定程度，忽然会做算术或推理，而这些能力并没有人专门教过。",
+      "exclude_articles": ["014-fourth-law-drones"]
+    },
+    {
+      "id": "embedding",
+      "zh": "嵌入",
+      "en": "Embedding",
+      "category": "人工智能与计算",
+      "aliases": ["嵌入向量", "嵌入", "embedding", "embeddings"],
+      "definition": "把单词、分子、蛋白质等东西变成一串固定长度的数字（向量），方便计算机比较和运算。意思相近的东西，嵌入向量也会离得近。",
+      "exclude_articles": ["014-fourth-law-drones"],
+      "skip_after": ["了", "唯一", "实验", "每台", "推理", "物理", "极强", "每"],
+      "skip_before": ["深入", "隐式", "里"]
+    },
+    {
+      "id": "latent-space",
+      "zh": "潜空间",
+      "en": "Latent Space",
+      "category": "人工智能与计算",
+      "aliases": ["潜空间", "latent space"],
+      "definition": "模型内部用来存放表征的一个抽象数学空间，人看不见，但模型在里面整理事物之间的关系。在潜空间里移动一点点，生成出来的分子或图像就会跟着变一点点。这档播客的名字也取自这个词。",
+      "exclude_articles": ["014-fourth-law-drones"]
+    },
+    {
+      "id": "small-molecule",
+      "zh": "小分子",
+      "en": "Small Molecule",
+      "category": "生物与新药",
+      "aliases": ["小分子药物", "小分子", "small molecule", "small molecules"],
+      "definition": "分子量很小、通常由化学合成做出来的药物，日常吃的大多数药片（比如阿司匹林、他汀）都是。它们个头小，容易进入细胞，可以做成口服药。",
+      "exclude_articles": ["014-fourth-law-drones"],
+      "skip_after": ["单元"]
+    },
+    {
+      "id": "protein-folding",
+      "zh": "蛋白质折叠",
+      "en": "Protein Folding",
+      "category": "生物与新药",
+      "aliases": ["蛋白质折叠", "protein folding"],
+      "definition": "一条由氨基酸串成的长链，自己卷曲、盘绕成特定三维形状的过程。蛋白质的形状决定它能干什么，所以「从序列算出形状」曾是生物学几十年的难题，AlphaFold 在这件事上取得了突破。",
+      "exclude_articles": ["014-fourth-law-drones"]
+    },
+    {
+      "id": "protein-design",
+      "zh": "蛋白质设计",
+      "en": "Protein Design / De novo Design",
+      "category": "生物与新药",
+      "aliases": ["蛋白质设计", "从头设计", "de novo design", "de novo protein design", "protein design"],
+      "definition": "反过来做蛋白质折叠：先想好要一个能干某件事的形状，再让计算机算出能折成这个形状的氨基酸序列。「从头设计」指不照着自然界已有的蛋白质改，而是完全新造一个。",
+      "exclude_articles": ["014-fourth-law-drones"],
+      "skip_after": ["定制", "了定制"]
+    },
+    {
+      "id": "drug-candidate",
+      "zh": "候选药物",
+      "en": "Drug Candidate",
+      "category": "生物与新药",
+      "aliases": ["候选药物", "drug candidate", "drug candidates"],
+      "definition": "经过初步筛选、看起来有希望成药，准备进入后续动物实验和临床试验的分子。大多数候选药物最终会在某个阶段被淘汰，只有很少一部分能上市。",
+      "exclude_articles": ["014-fourth-law-drones"]
+    },
+    {
+      "id": "preclinical",
+      "zh": "临床前",
+      "en": "Preclinical",
+      "category": "生物与新药",
+      "aliases": ["临床前研究", "临床前", "preclinical"],
+      "definition": "药物第一次用在人身上之前的研究阶段，包括细胞实验和动物实验，主要看它有没有效、安不安全。通过之后才能申请进入临床试验。",
+      "exclude_articles": ["014-fourth-law-drones"]
     }
   ]
 }

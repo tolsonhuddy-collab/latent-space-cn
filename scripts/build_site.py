@@ -633,6 +633,12 @@ def annotate_glossary_terms(body_html: str, glossary: List[dict]) -> Tuple[str, 
         tid = entry["id"]
         if tid in seen_ids:
             return surface
+        after = m.string[m.end():m.end() + 6]
+        before = m.string[max(0, m.start() - 6):m.start()]
+        if any(after.startswith(x) for x in entry.get("skip_after") or []):
+            return surface
+        if any(before.endswith(x) for x in entry.get("skip_before") or []):
+            return surface
         seen_ids.add(tid)
         matched_entries.append(entry)
         return (
@@ -850,7 +856,8 @@ def build_site(mode: str, out_dir: Path, base_url: str = "") -> None:
                 f'alt="{html.escape(title_en, quote=True)}" /></figure>'
             )
 
-        annotated_body_html, matched_entries = annotate_glossary_terms(body_html, glossary)
+        article_glossary = [g for g in glossary if ep_id not in (g.get("exclude_articles") or [])]
+        annotated_body_html, matched_entries = annotate_glossary_terms(body_html, article_glossary)
         glossary_box_html, glossary_script_html = render_glossary_section(matched_entries)
         related_html = render_related_articles(meta, published_ordered, articles)
 
